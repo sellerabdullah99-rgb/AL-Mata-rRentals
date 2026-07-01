@@ -154,7 +154,7 @@ const CARS_DATA = [
       "Touch screen"
     ],
     "desc": "Modern SUV with premium features \u2014 backup camera, touchscreen, dual AC. Perfect for family outings and highway travel.",
-    "hourlyRate":
+    "hourlyRate": 1100
   },
   {
     "id": 6,
