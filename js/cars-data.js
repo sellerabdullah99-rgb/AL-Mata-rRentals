@@ -12,7 +12,7 @@ const CARS_DATA = [
     "id": 1,
     "name": "Toyota Corolla",
     "type": "Sedan",
-    "image":[ "/images/toyota-corolla-Altis.jpeg",
+    "image":[ "/images/car1/toyota-corolla-Altis.jpeg",
      
     ],
     "rating": 4.9,
@@ -44,7 +44,7 @@ const CARS_DATA = [
     "name": "Toyota Corolla Land-Cruiser",
     "type": "Sedan",
     "image": [
-      "/images/Toyota-Land-Cruiser.jpeg"
+      "/images/car3.land-cruser,jpeg.jpeg"
     ],
     "rating": 4.8,
     "avail": "Available",
