@@ -44,7 +44,7 @@ const CARS_DATA = [
     "name": "Toyota Corolla Land-Cruiser",
     "type": "Sedan",
     "image": [
-      "/images/car3.land-cruser,jpeg.jpeg"
+      "/images/car3/land-cruser.jpeg"
     ],
     "rating": 4.8,
     "avail": "Available",
