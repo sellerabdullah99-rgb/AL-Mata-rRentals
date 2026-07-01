@@ -1,228 +1,678 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Our Fleet — AL-Matar Rentals Karachi</title>
-<meta name="description" content="Browse AL-Matar Rentals full fleet — Economy, Sedan, SUV and Luxury cars in Gulshan Iqbal Karachi. Verified, insured, and ready to book on WhatsApp."/>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/global.css">
-<style>
-.fleet-controls{background:var(--surface);border-bottom:1px solid var(--border);padding:20px 0;position:sticky;top:0;z-index:99;}
-.fleet-controls__inner{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;}
-.filters{display:flex;gap:8px;flex-wrap:wrap;}
-.filter-btn{padding:8px 20px;border-radius:50px;border:1.5px solid var(--border);background:transparent;color:var(--muted);font-size:0.8rem;font-weight:600;cursor:pointer;transition:var(--transition);}
-.filter-btn:hover{border-color:var(--primary-border);color:var(--primary-dark);}
-.filter-btn.active{background:var(--primary);border-color:var(--primary);color:#fff;}
-.sort-sel{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius);padding:9px 14px;color:var(--text);font-size:0.82rem;outline:none;cursor:pointer;}
-.sort-sel option{background:var(--surface);}
-.fleet-section{padding:60px 0 100px;background:var(--bg);}
-.fleet-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px;}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Fleet — AL-Matar Rentals Karachi</title>
+  <meta name="description"
+    content="Browse AL-Matar Rentals full fleet — Economy, Sedan, SUV and Luxury cars in Gulshan Iqbal Karachi. Verified, insured, and ready to book on WhatsApp." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Jost:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/global.css">
+  <style>
+    .fleet-controls {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 20px 0;
+      position: sticky;
+      top: 0;
+      z-index: 99;
+    }
 
-/* CAR CARDS */
-.car-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;transition:var(--transition);position:relative;box-shadow:var(--shadow);}
-.car-card:hover{border-color:var(--primary-border);transform:translateY(-6px);box-shadow:var(--shadow-lg);}
-.car-card__badge{position:absolute;top:14px;left:14px;font-size:0.65rem;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;padding:4px 12px;border-radius:50px;z-index:2;}
-.badge-gold{background:var(--primary);color:#fff;}
-.badge-dark{background:var(--accent);color:#fff;}
+    .fleet-controls__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
 
-/* GALLERY ON CARD */
-.car-card__img-wrap{position:relative;aspect-ratio:4/3;background:var(--surface2);overflow:hidden;}
-.car-card__img-wrap img{width:100%;height:100%;object-fit:cover;}
-.car-card__rating{position:absolute;top:14px;right:14px;background:rgba(255,255,255,0.95);border-radius:50px;padding:4px 10px;font-size:0.76rem;font-weight:700;box-shadow:0 2px 8px rgba(0,0,0,0.1);}
-.car-card__heart{position:absolute;bottom:12px;right:12px;background:rgba(255,255,255,0.92);border:none;width:34px;height:34px;border-radius:50%;font-size:1.05rem;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,0.12);transition:transform 0.2s;}
-.car-card__heart:hover{transform:scale(1.1);}
+    .filters {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
 
-.car-card__body{padding:18px 22px 22px;}
-.car-card__name{font-family:var(--font-display);font-weight:600;font-size:1.3rem;color:var(--accent);margin-bottom:2px;}
-.car-card__type{font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--primary-dark);margin-bottom:12px;}
-.avail-badge{display:inline-block;font-size:0.68rem;font-weight:700;padding:3px 10px;border-radius:50px;}
-.avail-yes{background:var(--success-bg);color:#15803d;}
-.avail-few{background:var(--primary-subtle);color:var(--primary-dark);}
-.car-specs{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0;}
-.car-specs span{font-size:0.7rem;color:var(--muted);background:var(--surface2);padding:4px 9px;border-radius:6px;}
-.car-feats{display:flex;flex-direction:column;gap:3px;margin-bottom:14px;}
-.car-feats span{font-size:0.75rem;color:var(--muted);}
-.car-price-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
-.car-price{font-family:var(--font-display);font-weight:700;font-size:1.75rem;color:var(--primary-dark);letter-spacing:0.01em;}
-.car-price-per{font-size:0.78rem;color:var(--muted);}
+    .filter-btn {
+      padding: 8px 20px;
+      border-radius: 50px;
+      border: 1.5px solid var(--border);
+      background: transparent;
+      color: var(--muted);
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
 
-/* TRUST CHIPS ROW — no fake urgency, just facts */
-.trust-row{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:14px;}
-.trust-row span{font-size:0.68rem;color:#15803d;background:var(--success-bg);padding:3px 8px;border-radius:5px;font-weight:600;}
+    .filter-btn:hover {
+      border-color: var(--primary-border);
+      color: var(--primary-dark);
+    }
 
-.car-actions{display:flex;gap:8px;}
+    .filter-btn.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #fff;
+    }
 
-/* COMPARE BAR */
-.compare-bar{position:fixed;bottom:0;left:0;right:0;background:var(--surface);border-top:1px solid var(--primary-border);padding:14px 24px;display:none;align-items:center;justify-content:space-between;gap:16px;z-index:100;flex-wrap:wrap;box-shadow:0 -8px 24px rgba(0,0,0,0.06);}
-.compare-bar.show{display:flex;}
-.compare-cars{display:flex;gap:10px;flex-wrap:wrap;}
-.compare-car-tag{background:var(--primary-subtle);border:1px solid var(--primary-border);border-radius:50px;padding:6px 14px;font-size:0.8rem;color:var(--primary-dark);}
+    .sort-sel {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 9px 14px;
+      color: var(--text);
+      font-size: 0.82rem;
+      outline: none;
+      cursor: pointer;
+    }
 
-/* MODAL WITH GALLERY */
-.car-modal .modal__box{max-width:600px;padding:0;overflow:hidden;}
-.modal-gallery{position:relative;aspect-ratio:16/9;background:var(--surface2);overflow:hidden;}
-.modal-gallery-track{display:flex;height:100%;transition:transform 0.35s cubic-bezier(.4,0,.2,1);}
-.modal-gallery-slide{flex:0 0 100%;height:100%;}
-.modal-gallery-slide img{width:100%;height:100%;object-fit:cover;}
-.modal-gallery-dots{position:absolute;bottom:14px;left:0;right:0;display:flex;justify-content:center;gap:6px;}
-.modal-gallery-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.5);transition:all 0.25s;cursor:pointer;}
-.modal-gallery-dot.active{background:#fff;width:18px;border-radius:3px;}
-.modal-gallery-nav{position:absolute;top:50%;transform:translateY(-50%);width:36px;height:36px;background:rgba(0,0,0,0.4);border:none;border-radius:50%;color:#fff;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;}
-.modal-gallery-nav.prev{left:12px;}
-.modal-gallery-nav.next{right:12px;}
-.modal__close{z-index:5;}
-.modal-content-pad{padding:32px 36px;}
-.modal-car-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;}
-.modal-meta h2{font-family:var(--font-display);font-weight:700;font-size:1.8rem;color:var(--accent);margin-bottom:4px;}
-.modal-type{font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--primary-dark);margin-bottom:10px;}
-.modal-rating{background:var(--success-bg);color:#15803d;padding:5px 12px;border-radius:50px;font-size:0.8rem;font-weight:700;flex-shrink:0;}
-.modal-price{font-family:var(--font-display);font-weight:700;font-size:2.4rem;color:var(--primary-dark);letter-spacing:0.01em;}
-.modal-price-per{font-size:0.82rem;color:var(--muted);}
-.modal-desc{color:var(--muted);font-size:0.88rem;line-height:1.72;margin-bottom:18px;}
-.modal-specs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;}
-.modal-specs span{font-size:0.76rem;color:var(--muted);background:var(--surface2);padding:5px 11px;border-radius:6px;}
-.modal-feats{background:var(--surface2);border-radius:var(--radius);padding:14px 18px;margin-bottom:18px;}
-.modal-feats div{font-size:0.85rem;color:var(--text);line-height:1.9;}
-.modal-trust{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;}
-.modal-trust span{font-size:0.74rem;color:#15803d;background:var(--success-bg);border:1px solid var(--success-border);padding:5px 12px;border-radius:50px;font-weight:600;}
-.modal-actions{display:flex;gap:10px;}
+    .sort-sel option {
+      background: var(--surface);
+    }
 
-.fleet-empty{text-align:center;padding:60px;grid-column:1/-1;color:var(--muted);}
-.fleet-empty p{margin-top:10px;font-size:0.9rem;}
-@media(max-width:640px){.fleet-controls__inner{flex-direction:column;align-items:flex-start;}.fleet-grid{grid-template-columns:1fr;}.modal-content-pad{padding:24px;}}
-</style>
+    .fleet-section {
+      padding: 60px 0 100px;
+      background: var(--bg);
+    }
+
+    .fleet-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 24px;
+    }
+
+    /* CAR CARDS */
+    .car-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: var(--transition);
+      position: relative;
+      box-shadow: var(--shadow);
+    }
+
+    .car-card:hover {
+      border-color: var(--primary-border);
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .car-card__badge {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      font-size: 0.65rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 50px;
+      z-index: 2;
+    }
+
+    .badge-gold {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .badge-dark {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    /* GALLERY ON CARD */
+    .car-card__img-wrap {
+      position: relative;
+      aspect-ratio: 4/3;
+      background: var(--surface2);
+      overflow: hidden;
+    }
+
+    .car-card__img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .car-card__rating {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 50px;
+      padding: 4px 10px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .car-card__heart {
+      position: absolute;
+      bottom: 12px;
+      right: 12px;
+      background: rgba(255, 255, 255, 0.92);
+      border: none;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      font-size: 1.05rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+      transition: transform 0.2s;
+    }
+
+    .car-card__heart:hover {
+      transform: scale(1.1);
+    }
+
+    .car-card__body {
+      padding: 18px 22px 22px;
+    }
+
+    .car-card__name {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 1.3rem;
+      color: var(--accent);
+      margin-bottom: 2px;
+    }
+
+    .car-card__type {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--primary-dark);
+      margin-bottom: 12px;
+    }
+
+    .avail-badge {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 50px;
+    }
+
+    .avail-yes {
+      background: var(--success-bg);
+      color: #15803d;
+    }
+
+    .avail-few {
+      background: var(--primary-subtle);
+      color: var(--primary-dark);
+    }
+
+    .car-specs {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin: 12px 0;
+    }
+
+    .car-specs span {
+      font-size: 0.7rem;
+      color: var(--muted);
+      background: var(--surface2);
+      padding: 4px 9px;
+      border-radius: 6px;
+    }
+
+    .car-feats {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      margin-bottom: 14px;
+    }
+
+    .car-feats span {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    .car-price-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .car-price {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.75rem;
+      color: var(--primary-dark);
+      letter-spacing: 0.01em;
+    }
+
+    .car-price-per {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    /* TRUST CHIPS ROW — no fake urgency, just facts */
+    .trust-row {
+      display: flex;
+      gap: 5px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+
+    .trust-row span {
+      font-size: 0.68rem;
+      color: #15803d;
+      background: var(--success-bg);
+      padding: 3px 8px;
+      border-radius: 5px;
+      font-weight: 600;
+    }
+
+    .car-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    /* COMPARE BAR */
+    .compare-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--surface);
+      border-top: 1px solid var(--primary-border);
+      padding: 14px 24px;
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      z-index: 100;
+      flex-wrap: wrap;
+      box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.06);
+    }
+
+    .compare-bar.show {
+      display: flex;
+    }
+
+    .compare-cars {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .compare-car-tag {
+      background: var(--primary-subtle);
+      border: 1px solid var(--primary-border);
+      border-radius: 50px;
+      padding: 6px 14px;
+      font-size: 0.8rem;
+      color: var(--primary-dark);
+    }
+
+    /* MODAL WITH GALLERY */
+    .car-modal .modal__box {
+      max-width: 600px;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .modal-gallery {
+      position: relative;
+      aspect-ratio: 16/9;
+      background: var(--surface2);
+      overflow: hidden;
+    }
+
+    .modal-gallery-track {
+      display: flex;
+      height: 100%;
+      transition: transform 0.35s cubic-bezier(.4, 0, .2, 1);
+    }
+
+    .modal-gallery-slide {
+      flex: 0 0 100%;
+      height: 100%;
+    }
+
+    .modal-gallery-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .modal-gallery-dots {
+      position: absolute;
+      bottom: 14px;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .modal-gallery-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.5);
+      transition: all 0.25s;
+      cursor: pointer;
+    }
+
+    .modal-gallery-dot.active {
+      background: #fff;
+      width: 18px;
+      border-radius: 3px;
+    }
+
+    .modal-gallery-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 36px;
+      height: 36px;
+      background: rgba(0, 0, 0, 0.4);
+      border: none;
+      border-radius: 50%;
+      color: #fff;
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-gallery-nav.prev {
+      left: 12px;
+    }
+
+    .modal-gallery-nav.next {
+      right: 12px;
+    }
+
+    .modal__close {
+      z-index: 5;
+    }
+
+    .modal-content-pad {
+      padding: 32px 36px;
+    }
+
+    .modal-car-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 16px;
+    }
+
+    .modal-meta h2 {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.8rem;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+
+    .modal-type {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--primary-dark);
+      margin-bottom: 10px;
+    }
+
+    .modal-rating {
+      background: var(--success-bg);
+      color: #15803d;
+      padding: 5px 12px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .modal-price {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 2.4rem;
+      color: var(--primary-dark);
+      letter-spacing: 0.01em;
+    }
+
+    .modal-price-per {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .modal-desc {
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.72;
+      margin-bottom: 18px;
+    }
+
+    .modal-specs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .modal-specs span {
+      font-size: 0.76rem;
+      color: var(--muted);
+      background: var(--surface2);
+      padding: 5px 11px;
+      border-radius: 6px;
+    }
+
+    .modal-feats {
+      background: var(--surface2);
+      border-radius: var(--radius);
+      padding: 14px 18px;
+      margin-bottom: 18px;
+    }
+
+    .modal-feats div {
+      font-size: 0.85rem;
+      color: var(--text);
+      line-height: 1.9;
+    }
+
+    .modal-trust {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .modal-trust span {
+      font-size: 0.74rem;
+      color: #15803d;
+      background: var(--success-bg);
+      border: 1px solid var(--success-border);
+      padding: 5px 12px;
+      border-radius: 50px;
+      font-weight: 600;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .fleet-empty {
+      text-align: center;
+      padding: 60px;
+      grid-column: 1/-1;
+      color: var(--muted);
+    }
+
+    .fleet-empty p {
+      margin-top: 10px;
+      font-size: 0.9rem;
+    }
+
+    @media(max-width:640px) {
+      .fleet-controls__inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .fleet-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .modal-content-pad {
+        padding: 24px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-<div id="nav-placeholder"></div>
+  <div id="nav-placeholder"></div>
 
-<section class="page-hero">
-  <div class="container page-hero__content">
-    <div class="page-hero__breadcrumb"><a href="index.html">Home</a><span>/</span><span>Fleet</span></div>
-    <h1>Our <span>Fleet</span></h1>
-    <p>8 verified cars across 4 categories — economy, sedan, SUV & luxury. All delivered free to your doorstep in Karachi.</p>
-  </div>
-</section>
-
-<div style="background:var(--success-bg);border-bottom:1px solid var(--success-border);padding:12px 0;text-align:center;">
-  <span style="font-size:0.85rem;color:#15803d;font-weight:600;">✓ Every car comes with a professional driver included — self-drive is not available</span>
-</div>
-
-<div class="fleet-controls">
-  <div class="container">
-    <div class="fleet-controls__inner">
-      <div class="filters">
-        <button class="filter-btn active" data-filter="all">All Cars</button>
-        <button class="filter-btn" data-filter="economy">Economy</button>
-        <button class="filter-btn" data-filter="sedan">Sedan</button>
-        <button class="filter-btn" data-filter="suv">SUV</button>
-        <button class="filter-btn" data-filter="luxury">Luxury</button>
-      </div>
-      <div style="display:flex;align-items:center;gap:10px;">
-        <span style="font-size:0.8rem;color:var(--muted);">Sort:</span>
-        <select class="sort-sel" id="sortSel">
-          <option value="default">Default</option>
-          <option value="price-asc">Price: Low → High</option>
-          <option value="price-desc">Price: High → Low</option>
-          <option value="popular">Most Popular</option>
-          <option value="rating">Highest Rated</option>
-        </select>
-      </div>
+  <section class="page-hero">
+    <div class="container page-hero__content">
+      <div class="page-hero__breadcrumb"><a href="index.html">Home</a><span>/</span><span>Fleet</span></div>
+      <h1>Our <span>Fleet</span></h1>
+      <p>8 verified cars across 4 categories — economy, sedan, SUV & luxury. All delivered free to your doorstep in
+        Karachi.</p>
     </div>
+  </section>
+
+  <div
+    style="background:var(--success-bg);border-bottom:1px solid var(--success-border);padding:12px 0;text-align:center;">
+    <span style="font-size:0.85rem;color:#15803d;font-weight:600;">✓ Every car comes with a professional driver included
+      — self-drive is not available</span>
   </div>
-</div>
 
-<section class="fleet-section">
-  <div class="container">
-    <div class="fleet-grid" id="fleetGrid"></div>
-  </div>
-</section>
-
-<!-- CAR DETAIL MODAL WITH GALLERY -->
-<div class="modal car-modal" id="carModal">
-  <div class="modal__bg" onclick="closeModal('carModal')"></div>
-  <div class="modal__box">
-    <button class="modal__close" onclick="closeModal('carModal')">✕</button>
-
-    <div class="modal-gallery">
-      <div class="modal-gallery-track" id="modalGalleryTrack"></div>
-      <button class="modal-gallery-nav prev" onclick="moveModalSlide(-1)">‹</button>
-      <button class="modal-gallery-nav next" onclick="moveModalSlide(1)">›</button>
-      <div class="modal-gallery-dots" id="modalGalleryDots"></div>
-    </div>
-
-    <div class="modal-content-pad">
-      <div class="modal-car-top">
-        <div class="modal-meta">
-          <h2 id="mName"></h2>
-          <div class="modal-type" id="mType"></div>
-          <div id="mPrice" class="modal-price"></div>
+  <div class="fleet-controls">
+    <div class="container">
+      <div class="fleet-controls__inner">
+        <div class="filters">
+          <button class="filter-btn active" data-filter="all">All Cars</button>
+          <button class="filter-btn" data-filter="economy">Economy</button>
+          <button class="filter-btn" data-filter="sedan">Sedan</button>
+          <button class="filter-btn" data-filter="suv">SUV</button>
+          <button class="filter-btn" data-filter="luxury">Luxury</button>
         </div>
-        <div class="modal-rating" id="mRating"></div>
-      </div>
-      <p class="modal-desc" id="mDesc"></p>
-      <div class="modal-specs" id="mSpecs"></div>
-      <div id="mPackageWrap" style="margin-bottom:18px;"></div>
-      <div class="modal-feats" id="mFeats"></div>
-      <div class="modal-trust">
-        <span>Driver included</span>
-        <span>Free cancellation</span>
-        <span>Fully insured</span>
-      </div>
-      <div class="modal-actions">
-        <a href="booking.html" class="btn btn-outline btn-full">Full Booking Form</a>
-        <a href="#" id="mWaBtn" class="btn btn-wa btn-full" target="_blank">Book on WhatsApp</a>
+        <div style="display:flex;align-items:center;gap:10px;">
+          <span style="font-size:0.8rem;color:var(--muted);">Sort:</span>
+          <select class="sort-sel" id="sortSel">
+            <option value="default">Default</option>
+            <option value="price-asc">Price: Low → High</option>
+            <option value="price-desc">Price: High → Low</option>
+            <option value="popular">Most Popular</option>
+            <option value="rating">Highest Rated</option>
+          </select>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- COMPARE BAR -->
-<div class="compare-bar" id="compareBar">
-  <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
-    <span style="font-size:0.85rem;color:var(--accent);font-weight:600;">Comparing:</span>
-    <div class="compare-cars" id="compareCars"></div>
+  <section class="fleet-section">
+    <div class="container">
+      <div class="fleet-grid" id="fleetGrid"></div>
+    </div>
+  </section>
+
+  <!-- CAR DETAIL MODAL WITH GALLERY -->
+  <div class="modal car-modal" id="carModal">
+    <div class="modal__bg" onclick="closeModal('carModal')"></div>
+    <div class="modal__box">
+      <button class="modal__close" onclick="closeModal('carModal')">✕</button>
+
+      <div class="modal-gallery">
+        <div class="modal-gallery-track" id="modalGalleryTrack"></div>
+        <button class="modal-gallery-nav prev" onclick="moveModalSlide(-1)">‹</button>
+        <button class="modal-gallery-nav next" onclick="moveModalSlide(1)">›</button>
+        <div class="modal-gallery-dots" id="modalGalleryDots"></div>
+      </div>
+
+      <div class="modal-content-pad">
+        <div class="modal-car-top">
+          <div class="modal-meta">
+            <h2 id="mName"></h2>
+            <div class="modal-type" id="mType"></div>
+            <div id="mPrice" class="modal-price"></div>
+          </div>
+          <div class="modal-rating" id="mRating"></div>
+        </div>
+        <p class="modal-desc" id="mDesc"></p>
+        <div class="modal-specs" id="mSpecs"></div>
+        <div id="mPackageWrap" style="margin-bottom:18px;"></div>
+        <div class="modal-feats" id="mFeats"></div>
+        <div class="modal-trust">
+          <span>Driver included</span>
+          <span>Free cancellation</span>
+          <span>Fully insured</span>
+        </div>
+        <div class="modal-actions">
+          <a href="booking.html" class="btn btn-outline btn-full">Full Booking Form</a>
+          <a href="#" id="mWaBtn" class="btn btn-wa btn-full" target="_blank">Book on WhatsApp</a>
+        </div>
+      </div>
+    </div>
   </div>
-  <div style="display:flex;gap:10px;">
-    <button class="btn btn-outline btn-sm" onclick="clearCompare()">Clear</button>
-    <button class="btn btn-gold btn-sm" onclick="doCompare()">Compare Now</button>
+
+  <!-- COMPARE BAR -->
+  <div class="compare-bar" id="compareBar">
+    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+      <span style="font-size:0.85rem;color:var(--accent);font-weight:600;">Comparing:</span>
+      <div class="compare-cars" id="compareCars"></div>
+    </div>
+    <div style="display:flex;gap:10px;">
+      <button class="btn btn-outline btn-sm" onclick="clearCompare()">Clear</button>
+      <button class="btn btn-gold btn-sm" onclick="doCompare()">Compare Now</button>
+    </div>
   </div>
-</div>
 
-<div id="footer-placeholder"></div>
-<script src="js/components.js"></script>
-<script src="js/cars-data.js"></script>
-<script src="js/cars-loader.js"></script>
-<script>
-document.getElementById('nav-placeholder').innerHTML = getNavbar('fleet');
-document.getElementById('footer-placeholder').innerHTML = getFooter();
+  <div id="footer-placeholder"></div>
+  <script src="js/components.js"></script>
+  <script src="js/cars-data.js"></script>
+  <script src="js/cars-loader.js"></script>
+  <script>
+    document.getElementById('nav-placeholder').innerHTML = getNavbar('fleet');
+    document.getElementById('footer-placeholder').innerHTML = getFooter();
 
-let CARS = [];
-let activeFilter = 'all', compareList = [];
-let modalIdx = 0, modalImages = [];
+    let CARS = [];
+    let activeFilter = 'all', compareList = [];
+    let modalIdx = 0, modalImages = [];
 
-// ── HOURLY PACKAGE PRICING ──
-// All cars now come with driver included. Customer picks a package (hours), price = hourlyRate × hours.
-const PACKAGES = [
-  { hours: 5,  label: '5 Hours' },
-  { hours: 10, label: '10 Hours' },
-  { hours: 12, label: '12 Hours' },
-  { hours: 20, label: '20 Hours' },
-  { hours: 24, label: '24 Hours (Full Day)' },
-];
-function packagePrice(hourlyRate, hours) { return hourlyRate * hours; }
+    // ── HOURLY PACKAGE PRICING ──
+    // All cars now come with driver included. Customer picks a package (hours), price = hourlyRate × hours.
+    const PACKAGES = [
+      { hours: 5, label: '5 Hours' },
+      { hours: 10, label: '10 Hours' },
+      { hours: 12, label: '12 Hours' },
+      { hours: 20, label: '20 Hours' },
+      { hours: 24, label: '24 Hours (Full Day)' },
+    ];
+    function packagePrice(hourlyRate, hours) { return hourlyRate * hours; }
 
-function renderFleet() {
-  let cars = [...CARS].filter(c => c.cat.includes(activeFilter));
-  const sort = document.getElementById('sortSel').value;
-  if (sort === 'price-asc') cars.sort((a,b) => a.hourlyRate - b.hourlyRate);
-  if (sort === 'price-desc') cars.sort((a,b) => b.hourlyRate - a.hourlyRate);
-  if (sort === 'popular') cars.sort((a,b) => b.popular - a.popular);
-  if (sort === 'rating') cars.sort((a,b) => b.rating - a.rating);
+    function renderFleet() {
+      let cars = [...CARS].filter(c => c.cat.includes(activeFilter));
+      const sort = document.getElementById('sortSel').value;
+      if (sort === 'price-asc') cars.sort((a, b) => a.hourlyRate - b.hourlyRate);
+      if (sort === 'price-desc') cars.sort((a, b) => b.hourlyRate - a.hourlyRate);
+      if (sort === 'popular') cars.sort((a, b) => b.popular - a.popular);
+      if (sort === 'rating') cars.sort((a, b) => b.rating - a.rating);
 
-  const grid = document.getElementById('fleetGrid');
-  if (!cars.length) { grid.innerHTML = '<div class="fleet-empty"><p>No cars found in this category.</p></div>'; return; }
-  grid.innerHTML = cars.map(c => `
+      const grid = document.getElementById('fleetGrid');
+      if (!cars.length) { grid.innerHTML = '<div class="fleet-empty"><p>No cars found in this category.</p></div>'; return; }
+      grid.innerHTML = cars.map(c => `
     <div class="car-card" data-id="${c.id}">
       ${c.badge ? `<div class="car-card__badge ${c.badgeClass === 'badge-black' ? 'badge-dark' : 'badge-gold'}">${c.badge}</div>` : ''}
       <div class="car-card__img-wrap">
@@ -236,7 +686,7 @@ function renderFleet() {
           <span class="avail-badge ${c.availClass}">${c.avail}</span>
         </div>
         <div class="car-specs"><span>⛽ ${c.fuel}</span><span>🪑 ${c.seats}</span><span>❄️ ${c.ac}</span><span>🎵 ${c.music}</span></div>
-        <div class="car-feats">${c.feats.slice(0,3).map(f=>`<span>✓ ${f}</span>`).join('')}</div>
+        <div class="car-feats">${c.feats.slice(0, 3).map(f => `<span>✓ ${f}</span>`).join('')}</div>
         <div class="car-price-row">
           <div>
             <span class="car-price">PKR ${c.hourlyRate.toLocaleString()}</span>
@@ -255,103 +705,104 @@ function renderFleet() {
         </div>
       </div>
     </div>`).join('');
-}
+    }
 
-function openCarModal(id) {
-  const c = CARS.find(x => x.id === id);
-  if (!c) return;
+    function openCarModal(id) {
+      const c = CARS.find(x => x.id === id);
+      if (!c) return;
 
-  modalImages = c.images && c.images.length ? c.images : [c.image];
-  modalIdx = 0;
-  renderModalGallery();
+      modalImages = c.images && c.images.length ? c.images : [c.image];
+      modalIdx = 0;
+      renderModalGallery();
 
-  document.getElementById('mName').textContent = c.name;
-  document.getElementById('mType').textContent = c.type;
-  document.getElementById('mRating').textContent = `⭐ ${c.rating}`;
-  document.getElementById('mDesc').textContent = c.desc;
-  document.getElementById('mSpecs').innerHTML = [c.fuel,c.seats,c.ac,c.music].map(s=>`<span>${s}</span>`).join('');
-  document.getElementById('mFeats').innerHTML = c.feats.map(f=>`<div>✓ ${f}</div>`).join('');
+      document.getElementById('mName').textContent = c.name;
+      document.getElementById('mType').textContent = c.type;
+      document.getElementById('mRating').textContent = `⭐ ${c.rating}`;
+      document.getElementById('mDesc').textContent = c.desc;
+      document.getElementById('mSpecs').innerHTML = [c.fuel, c.seats, c.ac, c.music].map(s => `<span>${s}</span>`).join('');
+      document.getElementById('mFeats').innerHTML = c.feats.map(f => `<div>✓ ${f}</div>`).join('');
 
-  // Hourly rate + package selector inside modal
-  document.getElementById('mPrice').innerHTML = `PKR ${c.hourlyRate.toLocaleString()}<span class="modal-price-per">/hour</span>`;
-  const pkgWrap = document.getElementById('mPackageWrap');
-  pkgWrap.innerHTML = `
+      // Hourly rate + package selector inside modal
+      document.getElementById('mPrice').innerHTML = `PKR ${c.hourlyRate.toLocaleString()}<span class="modal-price-per">/hour</span>`;
+      const pkgWrap = document.getElementById('mPackageWrap');
+      pkgWrap.innerHTML = `
     <div class="form-group">
       <label>Choose a package</label>
       <select id="mPkgSelect" data-rate="${c.hourlyRate}" data-name="${c.name}" onchange="updateModalPackagePrice()">
         ${PACKAGES.map(p => `<option value="${p.hours}">${p.label} — PKR ${packagePrice(c.hourlyRate, p.hours).toLocaleString()}</option>`).join('')}
       </select>
     </div>`;
-  updateModalPackagePrice();
-  openModal('carModal');
-}
+      updateModalPackagePrice();
+      openModal('carModal');
+    }
 
-function updateModalPackagePrice() {
-  const sel = document.getElementById('mPkgSelect');
-  if (!sel) return;
-  const rate = parseInt(sel.dataset.rate);
-  const name = sel.dataset.name;
-  const hours = parseInt(sel.value);
-  const total = packagePrice(rate, hours);
-  const msg = `Assalamualaikum! I want to book *${name}* — ${hours} hour package (PKR ${total.toLocaleString()} total, driver included) from *AL-Matar Rentals*, Gulshan Iqbal Karachi. Please confirm availability!`;
-  document.getElementById('mWaBtn').href = `https://wa.me/923001234567?text=${encodeURIComponent(msg)}`;
-}
+    function updateModalPackagePrice() {
+      const sel = document.getElementById('mPkgSelect');
+      if (!sel) return;
+      const rate = parseInt(sel.dataset.rate);
+      const name = sel.dataset.name;
+      const hours = parseInt(sel.value);
+      const total = packagePrice(rate, hours);
+      const msg = `Assalamualaikum! I want to book *${name}* — ${hours} hour package (PKR ${total.toLocaleString()} total, driver included) from *AL-Matar Rentals*, Gulshan Iqbal Karachi. Please confirm availability!`;
+      document.getElementById('mWaBtn').href = `https://wa.me/923412372227?text=${encodeURIComponent(msg)}`;
+    }
 
-function renderModalGallery() {
-  const track = document.getElementById('modalGalleryTrack');
-  const dots = document.getElementById('modalGalleryDots');
-  track.innerHTML = modalImages.map(img => `<div class="modal-gallery-slide"><img src="${img}" alt=""/></div>`).join('');
-  dots.innerHTML = modalImages.map((_, i) => `<div class="modal-gallery-dot ${i===0?'active':''}" onclick="goModalSlide(${i})"></div>`).join('');
-  updateModalGallery();
-}
-function updateModalGallery() {
-  document.getElementById('modalGalleryTrack').style.transform = `translateX(-${modalIdx * 100}%)`;
-  document.querySelectorAll('.modal-gallery-dot').forEach((d,i) => d.classList.toggle('active', i === modalIdx));
-}
-function moveModalSlide(dir) { modalIdx = (modalIdx + dir + modalImages.length) % modalImages.length; updateModalGallery(); }
-function goModalSlide(i) { modalIdx = i; updateModalGallery(); }
+    function renderModalGallery() {
+      const track = document.getElementById('modalGalleryTrack');
+      const dots = document.getElementById('modalGalleryDots');
+      track.innerHTML = modalImages.map(img => `<div class="modal-gallery-slide"><img src="${img}" alt=""/></div>`).join('');
+      dots.innerHTML = modalImages.map((_, i) => `<div class="modal-gallery-dot ${i === 0 ? 'active' : ''}" onclick="goModalSlide(${i})"></div>`).join('');
+      updateModalGallery();
+    }
+    function updateModalGallery() {
+      document.getElementById('modalGalleryTrack').style.transform = `translateX(-${modalIdx * 100}%)`;
+      document.querySelectorAll('.modal-gallery-dot').forEach((d, i) => d.classList.toggle('active', i === modalIdx));
+    }
+    function moveModalSlide(dir) { modalIdx = (modalIdx + dir + modalImages.length) % modalImages.length; updateModalGallery(); }
+    function goModalSlide(i) { modalIdx = i; updateModalGallery(); }
 
-function waBook(name, price) {
-  const msg = `Assalamualaikum! I want to book *${name}* (PKR ${Number(price).toLocaleString()}/day) from *AL-Matar Rentals*, Gulshan Iqbal Karachi. Please confirm availability!`;
-  window.open(`https://wa.me/923001234567?text=${encodeURIComponent(msg)}`, '_blank');
-}
+    function waBook(name, price) {
+      const msg = `Assalamualaikum! I want to book *${name}* (PKR ${Number(price).toLocaleString()}/day) from *AL-Matar Rentals*, Gulshan Iqbal Karachi. Please confirm availability!`;
+      window.open(`https://wa.me/923412372227?text=${encodeURIComponent(msg)}`, '_blank');
+    }
 
-function updateCardPackagePrice(sel) {
-  // No DOM price element needs live update right now since price shows inside the
-  // dropdown options themselves — this hook exists for any future visible total display.
-}
+    function updateCardPackagePrice(sel) {
+      // No DOM price element needs live update right now since price shows inside the
+      // dropdown options themselves — this hook exists for any future visible total display.
+    }
 
-function waBookCard(btn, carId) {
-  const card = btn.closest('.car-card');
-  const sel = card.querySelector('.pkg-select');
-  const rate = parseInt(sel.dataset.rate);
-  const name = sel.dataset.name;
-  const hours = parseInt(sel.value);
-  const total = packagePrice(rate, hours);
-  const msg = `Assalamualaikum! I want to book *${name}* — ${hours} hour package (PKR ${total.toLocaleString()} total, driver included) from *AL-Matar Rentals*, Gulshan Iqbal Karachi. Please confirm availability!`;
-  window.open(`https://wa.me/923001234567?text=${encodeURIComponent(msg)}`, '_blank');
-}
+    function waBookCard(btn, carId) {
+      const card = btn.closest('.car-card');
+      const sel = card.querySelector('.pkg-select');
+      const rate = parseInt(sel.dataset.rate);
+      const name = sel.dataset.name;
+      const hours = parseInt(sel.value);
+      const total = packagePrice(rate, hours);
+      const msg = `Assalamualaikum! I want to book *${name}* — ${hours} hour package (PKR ${total.toLocaleString()} total, driver included) from *AL-Matar Rentals*, Gulshan Iqbal Karachi. Please confirm availability!`;
+      window.open(`https://wa.me/923412372227?text=${encodeURIComponent(msg)}`, '_blank');
+    }
 
-function toggleWish(e, btn) { e.stopPropagation(); btn.textContent = btn.textContent === '🤍' ? '❤️' : '🤍'; }
+    function toggleWish(e, btn) { e.stopPropagation(); btn.textContent = btn.textContent === '🤍' ? '❤️' : '🤍'; }
 
-function clearCompare() { compareList = []; document.getElementById('compareBar').classList.remove('show'); }
-function doCompare() { toast('Compare feature — select 2+ cars using the Details button', 'info'); }
+    function clearCompare() { compareList = []; document.getElementById('compareBar').classList.remove('show'); }
+    function doCompare() { toast('Compare feature — select 2+ cars using the Details button', 'info'); }
 
-document.querySelectorAll('.filter-btn').forEach(btn => {
-  btn.addEventListener('click', function() {
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    this.classList.add('active');
-    activeFilter = this.dataset.filter;
-    renderFleet();
-  });
-});
-document.getElementById('sortSel').addEventListener('change', renderFleet);
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', function () {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        activeFilter = this.dataset.filter;
+        renderFleet();
+      });
+    });
+    document.getElementById('sortSel').addEventListener('change', renderFleet);
 
-(async function initFleet() {
-  CARS = await loadCars();
-  renderFleet();
-})();
-</script>
-<script src="js/global.js"></script>
+    (async function initFleet() {
+      CARS = await loadCars();
+      renderFleet();
+    })();
+  </script>
+  <script src="js/global.js"></script>
 </body>
+
 </html>

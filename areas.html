@@ -1,191 +1,558 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Areas We Serve — AL-Matar Rentals Karachi</title>
-<meta name="description" content="AL-Matar Rentals covers all of Karachi — Gulshan Iqbal, DHA, Clifton, North Nazimabad, PECHS, Bahria Town and outstation trips across Pakistan."/>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/global.css">
-<style>
-.coverage{padding:80px 0;background:var(--bg);}
-.coverage__inner{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Areas We Serve — AL-Matar Rentals Karachi</title>
+  <meta name="description"
+    content="AL-Matar Rentals covers all of Karachi — Gulshan Iqbal, DHA, Clifton, North Nazimabad, PECHS, Bahria Town and outstation trips across Pakistan." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Jost:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/global.css">
+  <style>
+    .coverage {
+      padding: 80px 0;
+      background: var(--bg);
+    }
 
-.khi-map{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-xl);padding:32px;position:relative;overflow:hidden;box-shadow:var(--shadow-lg);}
-.khi-map__title{font-family:var(--font-body);font-size:1.1rem;font-weight:700;color:var(--accent);margin-bottom:6px;}
-.khi-map__sub{font-size:0.8rem;color:var(--muted);margin-bottom:24px;}
-.map-svg-wrap{position:relative;background:var(--surface2);border-radius:var(--radius-lg);padding:24px;min-height:320px;display:flex;align-items:center;justify-content:center;}
+    .coverage__inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
 
-.areas-list{display:flex;flex-direction:column;gap:12px;}
-.area-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;display:flex;align-items:center;gap:14px;transition:var(--transition);cursor:default;box-shadow:var(--shadow);}
-.area-card:hover{border-color:var(--primary-border);transform:translateX(4px);}
-.area-card--hq{border-color:var(--primary-border);background:var(--primary-subtle4);}
-.area-icon{font-size:1.4rem;flex-shrink:0;}
-.area-info{flex:1;}
-.area-name{font-size:0.92rem;font-weight:700;color:var(--accent);margin-bottom:2px;}
-.area-card--hq .area-name{color:var(--primary-dark);}
-.area-dist{font-size:0.76rem;color:var(--muted);}
-.area-badge{font-size:0.65rem;font-weight:700;padding:3px 10px;border-radius:50px;}
+    .khi-map {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 32px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
 
-.outstation{padding:80px 0;background:var(--surface2);}
-.out-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px;}
-.out-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:28px;transition:var(--transition);box-shadow:var(--shadow);}
-.out-card:hover{border-color:var(--primary-border);transform:translateY(-4px);box-shadow:var(--shadow-lg);}
-.out-icon{font-size:2.4rem;margin-bottom:14px;}
-.out-card h3{font-family:var(--font-body);font-size:1rem;font-weight:700;color:var(--accent);margin-bottom:6px;}
-.out-dist{font-size:0.78rem;color:var(--primary-dark);font-weight:600;margin-bottom:8px;}
-.out-card p{color:var(--muted);font-size:0.84rem;line-height:1.65;margin-bottom:14px;}
-.out-price{font-size:0.78rem;color:var(--muted);}
-.out-price strong{color:var(--accent);}
+    .khi-map__title {
+      font-family: var(--font-body);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
 
-.services-band{padding:80px 0;background:var(--bg);}
-.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
-.svc-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:28px;text-align:center;transition:var(--transition);box-shadow:var(--shadow);}
-.svc-card:hover{border-color:var(--primary-border);transform:translateY(-4px);box-shadow:var(--shadow-lg);}
-.svc-icon{font-size:2.5rem;margin-bottom:14px;}
-.svc-card h3{font-family:var(--font-body);font-size:1rem;font-weight:700;color:var(--accent);margin-bottom:8px;}
-.svc-card p{color:var(--muted);font-size:0.84rem;line-height:1.65;}
+    .khi-map__sub {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
 
-.areas-cta{padding:72px 0;text-align:center;background:var(--surface2);}
-@media(max-width:900px){.coverage__inner{grid-template-columns:1fr;}.services-grid{grid-template-columns:1fr 1fr;}}
-@media(max-width:640px){.services-grid{grid-template-columns:1fr;}}
-</style>
+    .map-svg-wrap {
+      position: relative;
+      background: var(--surface2);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      min-height: 320px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .areas-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .area-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      transition: var(--transition);
+      cursor: default;
+      box-shadow: var(--shadow);
+    }
+
+    .area-card:hover {
+      border-color: var(--primary-border);
+      transform: translateX(4px);
+    }
+
+    .area-card--hq {
+      border-color: var(--primary-border);
+      background: var(--primary-subtle4);
+    }
+
+    .area-icon {
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+
+    .area-info {
+      flex: 1;
+    }
+
+    .area-name {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 2px;
+    }
+
+    .area-card--hq .area-name {
+      color: var(--primary-dark);
+    }
+
+    .area-dist {
+      font-size: 0.76rem;
+      color: var(--muted);
+    }
+
+    .area-badge {
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 50px;
+    }
+
+    .outstation {
+      padding: 80px 0;
+      background: var(--surface2);
+    }
+
+    .out-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .out-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      transition: var(--transition);
+      box-shadow: var(--shadow);
+    }
+
+    .out-card:hover {
+      border-color: var(--primary-border);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .out-icon {
+      font-size: 2.4rem;
+      margin-bottom: 14px;
+    }
+
+    .out-card h3 {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+
+    .out-dist {
+      font-size: 0.78rem;
+      color: var(--primary-dark);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .out-card p {
+      color: var(--muted);
+      font-size: 0.84rem;
+      line-height: 1.65;
+      margin-bottom: 14px;
+    }
+
+    .out-price {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .out-price strong {
+      color: var(--accent);
+    }
+
+    .services-band {
+      padding: 80px 0;
+      background: var(--bg);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .svc-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      text-align: center;
+      transition: var(--transition);
+      box-shadow: var(--shadow);
+    }
+
+    .svc-card:hover {
+      border-color: var(--primary-border);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .svc-icon {
+      font-size: 2.5rem;
+      margin-bottom: 14px;
+    }
+
+    .svc-card h3 {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .svc-card p {
+      color: var(--muted);
+      font-size: 0.84rem;
+      line-height: 1.65;
+    }
+
+    .areas-cta {
+      padding: 72px 0;
+      text-align: center;
+      background: var(--surface2);
+    }
+
+    @media(max-width:900px) {
+      .coverage__inner {
+        grid-template-columns: 1fr;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media(max-width:640px) {
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
+
 <body>
-<div id="nav-placeholder"></div>
+  <div id="nav-placeholder"></div>
 
-<section class="page-hero">
-  <div class="container page-hero__content">
-    <div class="page-hero__breadcrumb"><a href="index.html">Home</a><span>/</span><span>Areas We Serve</span></div>
-    <h1>We Come<br><span>To You</span></h1>
-    <p>From Gulshan Iqbal to the whole of Karachi — free doorstep delivery wherever you are. Plus outstation trips across Pakistan.</p>
-  </div>
-</section>
+  <section class="page-hero">
+    <div class="container page-hero__content">
+      <div class="page-hero__breadcrumb"><a href="index.html">Home</a><span>/</span><span>Areas We Serve</span></div>
+      <h1>We Come<br><span>To You</span></h1>
+      <p>From Gulshan Iqbal to the whole of Karachi — free doorstep delivery wherever you are. Plus outstation trips
+        across Pakistan.</p>
+    </div>
+  </section>
 
-<section class="coverage">
-  <div class="container">
-    <div class="coverage__inner">
-      <div class="khi-map" data-aos>
-        <div class="khi-map__title">Service Coverage Map</div>
-        <div class="khi-map__sub">All pins represent areas we actively serve in Karachi</div>
-        <div class="map-svg-wrap">
-          <svg viewBox="0 0 400 320" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:360px;">
-            <path d="M20 40 L380 40 L380 220 Q340 260 300 280 Q240 300 180 295 Q120 290 80 270 Q40 250 20 220 Z" fill="rgba(184,150,46,0.04)" stroke="rgba(184,150,46,0.18)" stroke-width="1.5" stroke-dasharray="6,4"/>
-            <path d="M20 220 Q40 250 80 270 Q120 290 180 295 Q240 300 300 280 Q340 260 380 220 L380 320 L20 320 Z" fill="rgba(17,17,17,0.04)"/>
-            <text x="200" y="310" fill="rgba(17,17,17,0.35)" font-size="9" text-anchor="middle" font-family="Jost">ARABIAN SEA</text>
-            <line x1="20" y1="120" x2="380" y2="120" stroke="rgba(0,0,0,0.05)" stroke-width="1"/>
-            <line x1="20" y1="170" x2="380" y2="170" stroke="rgba(0,0,0,0.05)" stroke-width="1"/>
-            <line x1="130" y1="40" x2="130" y2="220" stroke="rgba(0,0,0,0.05)" stroke-width="1"/>
-            <line x1="230" y1="40" x2="230" y2="250" stroke="rgba(0,0,0,0.05)" stroke-width="1"/>
-            <line x1="310" y1="40" x2="310" y2="240" stroke="rgba(0,0,0,0.05)" stroke-width="1"/>
-            <circle cx="240" cy="130" r="12" fill="rgba(184,150,46,0.18)" stroke="#B8962E" stroke-width="2"/>
-            <circle cx="240" cy="130" r="5" fill="#B8962E"/>
-            <text x="240" y="118" fill="#8F7220" font-size="7.5" text-anchor="middle" font-family="Jost" font-weight="700">GULSHAN IQBAL HQ</text>
-            <g opacity="0.85">
-              <circle cx="200" cy="200" r="5" fill="#111111"/>
-              <text x="200" y="215" fill="rgba(17,17,17,0.6)" font-size="6.5" text-anchor="middle" font-family="Jost">CLIFTON / DHA</text>
-              <circle cx="160" cy="105" r="5" fill="#111111"/>
-              <text x="160" y="98" fill="rgba(17,17,17,0.6)" font-size="6.5" text-anchor="middle" font-family="Jost">N.NAZIMABAD</text>
-              <circle cx="280" cy="155" r="5" fill="#111111"/>
-              <text x="280" y="167" fill="rgba(17,17,17,0.6)" font-size="6.5" text-anchor="middle" font-family="Jost">GULISTAN-E-JAUHAR</text>
-              <circle cx="310" cy="100" r="5" fill="#111111"/>
-              <text x="310" y="93" fill="rgba(17,17,17,0.6)" font-size="6.5" text-anchor="middle" font-family="Jost">KORANGI</text>
-              <circle cx="120" cy="140" r="5" fill="#111111"/>
-              <text x="120" y="133" fill="rgba(17,17,17,0.6)" font-size="6.5" text-anchor="middle" font-family="Jost">PECHS</text>
-              <circle cx="80" cy="90" r="5" fill="#111111"/>
-              <text x="80" y="83" fill="rgba(17,17,17,0.6)" font-size="6.5" text-anchor="middle" font-family="Jost">SADDAR</text>
-              <circle cx="350" cy="75" r="5" fill="#15803d"/>
-              <text x="350" y="68" fill="rgba(17,17,17,0.6)" font-size="6.5" text-anchor="middle" font-family="Jost">AIRPORT</text>
-              <circle cx="60" cy="165" r="5" fill="#111111"/>
-              <text x="60" y="158" fill="rgba(17,17,17,0.6)" font-size="6.5" text-anchor="middle" font-family="Jost">DEFENCE</text>
-              <circle cx="340" cy="170" r="5" fill="#111111"/>
-              <text x="340" y="163" fill="rgba(17,17,17,0.6)" font-size="6.5" text-anchor="middle" font-family="Jost">BAHRIA TOWN</text>
-            </g>
-            <circle cx="32" cy="258" r="5" fill="#B8962E"/>
-            <text x="42" y="262" fill="rgba(17,17,17,0.55)" font-size="7" font-family="Jost">HQ / Base</text>
-            <circle cx="32" cy="272" r="5" fill="#111111"/>
-            <text x="42" y="276" fill="rgba(17,17,17,0.55)" font-size="7" font-family="Jost">Covered Area</text>
-            <circle cx="32" cy="286" r="5" fill="#15803d"/>
-            <text x="42" y="290" fill="rgba(17,17,17,0.55)" font-size="7" font-family="Jost">Airport</text>
-          </svg>
+  <section class="coverage">
+    <div class="container">
+      <div class="coverage__inner">
+        <div class="khi-map" data-aos>
+          <div class="khi-map__title">Service Coverage Map</div>
+          <div class="khi-map__sub">All pins represent areas we actively serve in Karachi</div>
+          <div class="map-svg-wrap">
+            <svg viewBox="0 0 400 320" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:360px;">
+              <path d="M20 40 L380 40 L380 220 Q340 260 300 280 Q240 300 180 295 Q120 290 80 270 Q40 250 20 220 Z"
+                fill="rgba(184,150,46,0.04)" stroke="rgba(184,150,46,0.18)" stroke-width="1.5" stroke-dasharray="6,4" />
+              <path d="M20 220 Q40 250 80 270 Q120 290 180 295 Q240 300 300 280 Q340 260 380 220 L380 320 L20 320 Z"
+                fill="rgba(17,17,17,0.04)" />
+              <text x="200" y="310" fill="rgba(17,17,17,0.35)" font-size="9" text-anchor="middle"
+                font-family="Jost">ARABIAN SEA</text>
+              <line x1="20" y1="120" x2="380" y2="120" stroke="rgba(0,0,0,0.05)" stroke-width="1" />
+              <line x1="20" y1="170" x2="380" y2="170" stroke="rgba(0,0,0,0.05)" stroke-width="1" />
+              <line x1="130" y1="40" x2="130" y2="220" stroke="rgba(0,0,0,0.05)" stroke-width="1" />
+              <line x1="230" y1="40" x2="230" y2="250" stroke="rgba(0,0,0,0.05)" stroke-width="1" />
+              <line x1="310" y1="40" x2="310" y2="240" stroke="rgba(0,0,0,0.05)" stroke-width="1" />
+              <circle cx="240" cy="130" r="12" fill="rgba(184,150,46,0.18)" stroke="#B8962E" stroke-width="2" />
+              <circle cx="240" cy="130" r="5" fill="#B8962E" />
+              <text x="240" y="118" fill="#8F7220" font-size="7.5" text-anchor="middle" font-family="Jost"
+                font-weight="700">GULSHAN IQBAL HQ</text>
+              <g opacity="0.85">
+                <circle cx="200" cy="200" r="5" fill="#111111" />
+                <text x="200" y="215" fill="rgba(17,17,17,0.6)" font-size="6.5" text-anchor="middle"
+                  font-family="Jost">CLIFTON / DHA</text>
+                <circle cx="160" cy="105" r="5" fill="#111111" />
+                <text x="160" y="98" fill="rgba(17,17,17,0.6)" font-size="6.5" text-anchor="middle"
+                  font-family="Jost">N.NAZIMABAD</text>
+                <circle cx="280" cy="155" r="5" fill="#111111" />
+                <text x="280" y="167" fill="rgba(17,17,17,0.6)" font-size="6.5" text-anchor="middle"
+                  font-family="Jost">GULISTAN-E-JAUHAR</text>
+                <circle cx="310" cy="100" r="5" fill="#111111" />
+                <text x="310" y="93" fill="rgba(17,17,17,0.6)" font-size="6.5" text-anchor="middle"
+                  font-family="Jost">KORANGI</text>
+                <circle cx="120" cy="140" r="5" fill="#111111" />
+                <text x="120" y="133" fill="rgba(17,17,17,0.6)" font-size="6.5" text-anchor="middle"
+                  font-family="Jost">PECHS</text>
+                <circle cx="80" cy="90" r="5" fill="#111111" />
+                <text x="80" y="83" fill="rgba(17,17,17,0.6)" font-size="6.5" text-anchor="middle"
+                  font-family="Jost">SADDAR</text>
+                <circle cx="350" cy="75" r="5" fill="#15803d" />
+                <text x="350" y="68" fill="rgba(17,17,17,0.6)" font-size="6.5" text-anchor="middle"
+                  font-family="Jost">AIRPORT</text>
+                <circle cx="60" cy="165" r="5" fill="#111111" />
+                <text x="60" y="158" fill="rgba(17,17,17,0.6)" font-size="6.5" text-anchor="middle"
+                  font-family="Jost">DEFENCE</text>
+                <circle cx="340" cy="170" r="5" fill="#111111" />
+                <text x="340" y="163" fill="rgba(17,17,17,0.6)" font-size="6.5" text-anchor="middle"
+                  font-family="Jost">BAHRIA TOWN</text>
+              </g>
+              <circle cx="32" cy="258" r="5" fill="#B8962E" />
+              <text x="42" y="262" fill="rgba(17,17,17,0.55)" font-size="7" font-family="Jost">HQ / Base</text>
+              <circle cx="32" cy="272" r="5" fill="#111111" />
+              <text x="42" y="276" fill="rgba(17,17,17,0.55)" font-size="7" font-family="Jost">Covered Area</text>
+              <circle cx="32" cy="286" r="5" fill="#15803d" />
+              <text x="42" y="290" fill="rgba(17,17,17,0.55)" font-size="7" font-family="Jost">Airport</text>
+            </svg>
+          </div>
+        </div>
+
+        <div class="areas-list" data-aos data-delay="2">
+          <div class="area-card area-card--hq">
+            <div class="area-icon">⭐</div>
+            <div class="area-info">
+              <div class="area-name">Gulshan Iqbal</div>
+              <div class="area-dist">Headquarters — fastest service</div>
+            </div><span class="area-badge tag tag-gold">HQ</span>
+          </div>
+          <div class="area-card">
+            <div class="area-icon">📍</div>
+            <div class="area-info">
+              <div class="area-name">Gulistan-e-Jauhar</div>
+              <div class="area-dist">~10 min from HQ</div>
+            </div><span class="area-badge tag tag-green">Fast</span>
+          </div>
+          <div class="area-card">
+            <div class="area-icon">📍</div>
+            <div class="area-info">
+              <div class="area-name">DHA Karachi</div>
+              <div class="area-dist">Defence Housing Authority</div>
+            </div>
+          </div>
+          <div class="area-card">
+            <div class="area-icon">📍</div>
+            <div class="area-info">
+              <div class="area-name">Clifton</div>
+              <div class="area-dist">Including Sea View area</div>
+            </div>
+          </div>
+          <div class="area-card">
+            <div class="area-icon">📍</div>
+            <div class="area-info">
+              <div class="area-name">North Nazimabad</div>
+              <div class="area-dist">All blocks covered</div>
+            </div>
+          </div>
+          <div class="area-card">
+            <div class="area-icon">📍</div>
+            <div class="area-info">
+              <div class="area-name">PECHS & Tariq Road</div>
+              <div class="area-dist">Commercial & residential</div>
+            </div>
+          </div>
+          <div class="area-card">
+            <div class="area-icon">📍</div>
+            <div class="area-info">
+              <div class="area-name">Saddar & Old City</div>
+              <div class="area-dist">Including Cantt area</div>
+            </div>
+          </div>
+          <div class="area-card">
+            <div class="area-icon">📍</div>
+            <div class="area-info">
+              <div class="area-name">Bahria Town Karachi</div>
+              <div class="area-dist">All sectors</div>
+            </div>
+          </div>
+          <div class="area-card">
+            <div class="area-icon">📍</div>
+            <div class="area-info">
+              <div class="area-name">Korangi & Landhi</div>
+              <div class="area-dist">Industrial & residential</div>
+            </div>
+          </div>
+          <div class="area-card">
+            <div class="area-icon">📍</div>
+            <div class="area-info">
+              <div class="area-name">Malir & Shah Faisal</div>
+              <div class="area-dist">East Karachi zones</div>
+            </div>
+          </div>
+          <div class="area-card">
+            <div class="area-icon">✈️</div>
+            <div class="area-info">
+              <div class="area-name">JIAP / Airport</div>
+              <div class="area-dist">Jinnah International Airport</div>
+            </div><span class="area-badge tag tag-gold">24/7</span>
+          </div>
+          <div class="area-card">
+            <div class="area-icon">🚂</div>
+            <div class="area-info">
+              <div class="area-name">Karachi Cantt Station</div>
+              <div class="area-dist">Train station pickup</div>
+            </div>
+          </div>
         </div>
       </div>
+    </div>
+  </section>
 
-      <div class="areas-list" data-aos data-delay="2">
-        <div class="area-card area-card--hq"><div class="area-icon">⭐</div><div class="area-info"><div class="area-name">Gulshan Iqbal</div><div class="area-dist">Headquarters — fastest service</div></div><span class="area-badge tag tag-gold">HQ</span></div>
-        <div class="area-card"><div class="area-icon">📍</div><div class="area-info"><div class="area-name">Gulistan-e-Jauhar</div><div class="area-dist">~10 min from HQ</div></div><span class="area-badge tag tag-green">Fast</span></div>
-        <div class="area-card"><div class="area-icon">📍</div><div class="area-info"><div class="area-name">DHA Karachi</div><div class="area-dist">Defence Housing Authority</div></div></div>
-        <div class="area-card"><div class="area-icon">📍</div><div class="area-info"><div class="area-name">Clifton</div><div class="area-dist">Including Sea View area</div></div></div>
-        <div class="area-card"><div class="area-icon">📍</div><div class="area-info"><div class="area-name">North Nazimabad</div><div class="area-dist">All blocks covered</div></div></div>
-        <div class="area-card"><div class="area-icon">📍</div><div class="area-info"><div class="area-name">PECHS & Tariq Road</div><div class="area-dist">Commercial & residential</div></div></div>
-        <div class="area-card"><div class="area-icon">📍</div><div class="area-info"><div class="area-name">Saddar & Old City</div><div class="area-dist">Including Cantt area</div></div></div>
-        <div class="area-card"><div class="area-icon">📍</div><div class="area-info"><div class="area-name">Bahria Town Karachi</div><div class="area-dist">All sectors</div></div></div>
-        <div class="area-card"><div class="area-icon">📍</div><div class="area-info"><div class="area-name">Korangi & Landhi</div><div class="area-dist">Industrial & residential</div></div></div>
-        <div class="area-card"><div class="area-icon">📍</div><div class="area-info"><div class="area-name">Malir & Shah Faisal</div><div class="area-dist">East Karachi zones</div></div></div>
-        <div class="area-card"><div class="area-icon">✈️</div><div class="area-info"><div class="area-name">JIAP / Airport</div><div class="area-dist">Jinnah International Airport</div></div><span class="area-badge tag tag-gold">24/7</span></div>
-        <div class="area-card"><div class="area-icon">🚂</div><div class="area-info"><div class="area-name">Karachi Cantt Station</div><div class="area-dist">Train station pickup</div></div></div>
+  <section class="outstation">
+    <div class="container">
+      <div class="sec-header center" data-aos>
+        <span class="sec-eyebrow">Outstation Trips</span>
+        <h2 class="sec-title">We Go Beyond Karachi</h2>
+        <p class="sec-sub">Need to travel out of Karachi? We've got you covered with experienced drivers and
+          well-maintained cars for long journeys.</p>
+      </div>
+      <div class="out-grid">
+        <div class="out-card" data-aos>
+          <div class="out-icon">🌆</div>
+          <h3>Hyderabad</h3>
+          <div class="out-dist">~150 km from Karachi</div>
+          <p>Perfect for day trips or weekend getaways. AC car with driver, stress-free journey on M-9 motorway.</p>
+          <div class="out-price">From <strong>PKR 5,500</strong> (24hr package) + route surcharge</div><a
+            href="booking.html" class="btn btn-outline btn-sm" style="margin-top:14px;display:inline-flex;">Book This
+            Route</a>
+        </div>
+        <div class="out-card" data-aos data-delay="1">
+          <div class="out-icon">🏙️</div>
+          <h3>Islamabad / Rawalpindi</h3>
+          <div class="out-dist">~1,200 km from Karachi</div>
+          <p>Long-haul trip with our most reliable cars. Professional driver, fuel included, fully insured for the
+            entire journey.</p>
+          <div class="out-price">From <strong>PKR 18,000 flat</strong> (negotiable)</div><a href="booking.html"
+            class="btn btn-outline btn-sm" style="margin-top:14px;display:inline-flex;">Book This Route</a>
+        </div>
+        <div class="out-card" data-aos data-delay="2">
+          <div class="out-icon">🕌</div>
+          <h3>Lahore</h3>
+          <div class="out-dist">~1,350 km from Karachi</div>
+          <p>Our most popular outstation route. Comfortable SUV or sedan with experienced, route-familiar driver.</p>
+          <div class="out-price">From <strong>PKR 20,000 flat</strong> (negotiable)</div><a href="booking.html"
+            class="btn btn-outline btn-sm" style="margin-top:14px;display:inline-flex;">Book This Route</a>
+        </div>
+        <div class="out-card" data-aos>
+          <div class="out-icon">🏔️</div>
+          <h3>Quetta</h3>
+          <div class="out-dist">~700 km from Karachi</div>
+          <p>Mountain terrain trip via N-25 highway. We recommend our SUV fleet for the best experience.</p>
+          <div class="out-price">From <strong>PKR 12,000 flat</strong> (negotiable)</div><a href="booking.html"
+            class="btn btn-outline btn-sm" style="margin-top:14px;display:inline-flex;">Book This Route</a>
+        </div>
+        <div class="out-card" data-aos data-delay="1">
+          <div class="out-icon">🌊</div>
+          <h3>Gwadar & Makran</h3>
+          <div class="out-dist">~500 km from Karachi</div>
+          <p>Explore the stunning Balochistan coastline. Comfortable journey with experienced local-route driver.</p>
+          <div class="out-price">From <strong>PKR 10,000 flat</strong> (negotiable)</div><a href="booking.html"
+            class="btn btn-outline btn-sm" style="margin-top:14px;display:inline-flex;">Book This Route</a>
+        </div>
+        <div class="out-card" data-aos data-delay="2" style="border-color:var(--primary-border);">
+          <div class="out-icon">📞</div>
+          <h3>Custom Route?</h3>
+          <div class="out-dist">Anywhere you want to go</div>
+          <p>Going somewhere not listed? No problem. WhatsApp us your destination and we'll arrange the best vehicle and
+            quote for you.</p>
+          <div class="out-price"><strong>Custom pricing available</strong></div><a
+            href="https://wa.me/923412372227?text=Assalamualaikum!%20I%20need%20a%20custom%20outstation%20route%20from%20AL-Matar%20Rentals."
+            class="btn btn-gold btn-sm" style="margin-top:14px;display:inline-flex;" target="_blank">Ask on WhatsApp</a>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="outstation">
-  <div class="container">
-    <div class="sec-header center" data-aos>
-      <span class="sec-eyebrow">Outstation Trips</span>
-      <h2 class="sec-title">We Go Beyond Karachi</h2>
-      <p class="sec-sub">Need to travel out of Karachi? We've got you covered with experienced drivers and well-maintained cars for long journeys.</p>
-    </div>
-    <div class="out-grid">
-      <div class="out-card" data-aos><div class="out-icon">🌆</div><h3>Hyderabad</h3><div class="out-dist">~150 km from Karachi</div><p>Perfect for day trips or weekend getaways. AC car with driver, stress-free journey on M-9 motorway.</p><div class="out-price">From <strong>PKR 5,500</strong> (24hr package) + route surcharge</div><a href="booking.html" class="btn btn-outline btn-sm" style="margin-top:14px;display:inline-flex;">Book This Route</a></div>
-      <div class="out-card" data-aos data-delay="1"><div class="out-icon">🏙️</div><h3>Islamabad / Rawalpindi</h3><div class="out-dist">~1,200 km from Karachi</div><p>Long-haul trip with our most reliable cars. Professional driver, fuel included, fully insured for the entire journey.</p><div class="out-price">From <strong>PKR 18,000 flat</strong> (negotiable)</div><a href="booking.html" class="btn btn-outline btn-sm" style="margin-top:14px;display:inline-flex;">Book This Route</a></div>
-      <div class="out-card" data-aos data-delay="2"><div class="out-icon">🕌</div><h3>Lahore</h3><div class="out-dist">~1,350 km from Karachi</div><p>Our most popular outstation route. Comfortable SUV or sedan with experienced, route-familiar driver.</p><div class="out-price">From <strong>PKR 20,000 flat</strong> (negotiable)</div><a href="booking.html" class="btn btn-outline btn-sm" style="margin-top:14px;display:inline-flex;">Book This Route</a></div>
-      <div class="out-card" data-aos><div class="out-icon">🏔️</div><h3>Quetta</h3><div class="out-dist">~700 km from Karachi</div><p>Mountain terrain trip via N-25 highway. We recommend our SUV fleet for the best experience.</p><div class="out-price">From <strong>PKR 12,000 flat</strong> (negotiable)</div><a href="booking.html" class="btn btn-outline btn-sm" style="margin-top:14px;display:inline-flex;">Book This Route</a></div>
-      <div class="out-card" data-aos data-delay="1"><div class="out-icon">🌊</div><h3>Gwadar & Makran</h3><div class="out-dist">~500 km from Karachi</div><p>Explore the stunning Balochistan coastline. Comfortable journey with experienced local-route driver.</p><div class="out-price">From <strong>PKR 10,000 flat</strong> (negotiable)</div><a href="booking.html" class="btn btn-outline btn-sm" style="margin-top:14px;display:inline-flex;">Book This Route</a></div>
-      <div class="out-card" data-aos data-delay="2" style="border-color:var(--primary-border);"><div class="out-icon">📞</div><h3>Custom Route?</h3><div class="out-dist">Anywhere you want to go</div><p>Going somewhere not listed? No problem. WhatsApp us your destination and we'll arrange the best vehicle and quote for you.</p><div class="out-price"><strong>Custom pricing available</strong></div><a href="https://wa.me/923001234567?text=Assalamualaikum!%20I%20need%20a%20custom%20outstation%20route%20from%20AL-Matar%20Rentals." class="btn btn-gold btn-sm" style="margin-top:14px;display:inline-flex;" target="_blank">Ask on WhatsApp</a></div>
-    </div>
-  </div>
-</section>
-
-<section class="services-band">
-  <div class="container">
-    <div class="sec-header center" data-aos>
-      <span class="sec-eyebrow">Special Services</span>
-      <h2 class="sec-title">More Than Just Rentals</h2>
-    </div>
-    <div class="services-grid">
-      <div class="svc-card" data-aos><div class="svc-icon">✈️</div><h3>Airport Transfers</h3><p>On-time pickup and drop-off at Jinnah International Airport. Flight tracking, meet & greet available 24/7.</p></div>
-      <div class="svc-card" data-aos data-delay="1"><div class="svc-icon">💍</div><h3>Wedding Rentals</h3><p>Make your big day unforgettable. Prado, Fortuner, Land Cruiser — decorated if needed. Book weeks in advance.</p></div>
-      <div class="svc-card" data-aos data-delay="2"><div class="svc-icon">🏢</div><h3>Corporate Packages</h3><p>Monthly contracts for businesses with dedicated account manager, priority service, and significant volume discounts.</p></div>
-      <div class="svc-card" data-aos><div class="svc-icon">🎓</div><h3>Student & School Trips</h3><p>Safe, supervised transport for educational trips and school outings with verified, responsible drivers.</p></div>
-      <div class="svc-card" data-aos data-delay="1"><div class="svc-icon">🏥</div><h3>Medical & Emergency</h3><p>Comfortable transport for hospital visits, medical checkups, and urgent situations. Available around the clock.</p></div>
-      <div class="svc-card" data-aos data-delay="2"><div class="svc-icon">🎉</div><h3>Events & Parties</h3><p>Birthday trips, family events, picnics, and gatherings. We handle your transport so you can focus on the fun.</p></div>
-    </div>
-  </div>
-</section>
-
-<section class="areas-cta">
-  <div class="container">
-    <div data-aos>
-      <span class="sec-eyebrow">Wherever You Are</span>
-      <h2 class="sec-title">We'll Be There</h2>
-      <p class="sec-sub" style="margin:12px auto 32px;text-align:center;">Just share your location on WhatsApp and we'll confirm delivery time within 15 minutes.</p>
-      <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
-        <a href="https://wa.me/923001234567?text=Assalamualaikum!%20I%20need%20a%20car%20delivered%20to%20my%20location%20from%20AL-Matar%20Rentals." class="btn btn-wa btn-lg" target="_blank">Share My Location on WhatsApp</a>
-        <a href="booking.html" class="btn btn-outline btn-lg">Full Booking Form</a>
+  <section class="services-band">
+    <div class="container">
+      <div class="sec-header center" data-aos>
+        <span class="sec-eyebrow">Special Services</span>
+        <h2 class="sec-title">More Than Just Rentals</h2>
+      </div>
+      <div class="services-grid">
+        <div class="svc-card" data-aos>
+          <div class="svc-icon">✈️</div>
+          <h3>Airport Transfers</h3>
+          <p>On-time pickup and drop-off at Jinnah International Airport. Flight tracking, meet & greet available 24/7.
+          </p>
+        </div>
+        <div class="svc-card" data-aos data-delay="1">
+          <div class="svc-icon">💍</div>
+          <h3>Wedding Rentals</h3>
+          <p>Make your big day unforgettable. Prado, Fortuner, Land Cruiser — decorated if needed. Book weeks in
+            advance.</p>
+        </div>
+        <div class="svc-card" data-aos data-delay="2">
+          <div class="svc-icon">🏢</div>
+          <h3>Corporate Packages</h3>
+          <p>Monthly contracts for businesses with dedicated account manager, priority service, and significant volume
+            discounts.</p>
+        </div>
+        <div class="svc-card" data-aos>
+          <div class="svc-icon">🎓</div>
+          <h3>Student & School Trips</h3>
+          <p>Safe, supervised transport for educational trips and school outings with verified, responsible drivers.</p>
+        </div>
+        <div class="svc-card" data-aos data-delay="1">
+          <div class="svc-icon">🏥</div>
+          <h3>Medical & Emergency</h3>
+          <p>Comfortable transport for hospital visits, medical checkups, and urgent situations. Available around the
+            clock.</p>
+        </div>
+        <div class="svc-card" data-aos data-delay="2">
+          <div class="svc-icon">🎉</div>
+          <h3>Events & Parties</h3>
+          <p>Birthday trips, family events, picnics, and gatherings. We handle your transport so you can focus on the
+            fun.</p>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<div id="footer-placeholder"></div>
-<script src="js/components.js"></script>
-<script src="js/cars-data.js"></script>
-<script src="js/cars-loader.js"></script>
-<script>
-document.getElementById('nav-placeholder').innerHTML = getNavbar('areas');
-document.getElementById('footer-placeholder').innerHTML = getFooter();
-</script>
-<script src="js/global.js"></script>
+  <section class="areas-cta">
+    <div class="container">
+      <div data-aos>
+        <span class="sec-eyebrow">Wherever You Are</span>
+        <h2 class="sec-title">We'll Be There</h2>
+        <p class="sec-sub" style="margin:12px auto 32px;text-align:center;">Just share your location on WhatsApp and
+          we'll confirm delivery time within 15 minutes.</p>
+        <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+          <a href="https://wa.me/923412372227?text=Assalamualaikum!%20I%20need%20a%20car%20delivered%20to%20my%20location%20from%20AL-Matar%20Rentals."
+            class="btn btn-wa btn-lg" target="_blank">Share My Location on WhatsApp</a>
+          <a href="booking.html" class="btn btn-outline btn-lg">Full Booking Form</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="footer-placeholder"></div>
+  <script src="js/components.js"></script>
+  <script src="js/cars-data.js"></script>
+  <script src="js/cars-loader.js"></script>
+  <script>
+    document.getElementById('nav-placeholder').innerHTML = getNavbar('areas');
+    document.getElementById('footer-placeholder').innerHTML = getFooter();
+  </script>
+  <script src="js/global.js"></script>
 </body>
+
 </html>
