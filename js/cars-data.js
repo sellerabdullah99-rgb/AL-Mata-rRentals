@@ -12,8 +12,8 @@ const CARS_DATA = [
     "id": 1,
     "name": "Toyota Corolla",
     "type": "Sedan",
-    "image":[ "/images/car1/toyota-corolla-Altis.jpeg",
-     
+    "image": ["/images/car1/toyota-corolla-Altis.jpeg",
+
     ],
     "rating": 4.9,
     "avail": "Available",
@@ -44,7 +44,7 @@ const CARS_DATA = [
     "name": "Toyota Corolla Land-Cruiser",
     "type": "Sedan",
     "image": [
-      "/images/car3/land-cruser.jpeg"
+      "/images/car3/land-cruiser.jpeg"
     ],
     "rating": 4.8,
     "avail": "Available",
@@ -74,7 +74,7 @@ const CARS_DATA = [
     "id": 3,
     "name": "Honda City",
     "type": "Sedan",
-    "image": "https://images.unsplash.com/photo-1617469767053-d3b523a0b982?w=600&q=80&auto=format&fit=crop",
+    "image": "/images/car2/car-img.jpeg",
     "rating": 4.7,
     "avail": "Available",
     "availClass": "avail-yes",
