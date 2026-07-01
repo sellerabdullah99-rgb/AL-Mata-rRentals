@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>About Us — AL-Matar Rentals Karachi</title>
+<meta name="description" content="Learn about AL-Matar Rentals — Gulshan Iqbal Karachi's most trusted car rental. Our story, mission, values and the team behind your perfect ride."/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/global.css">
+<style>
+.story{padding:80px 0;background:var(--bg);}
+.story__inner{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;}
+.story__visual{position:relative;}
+.story__card-main{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-xl);padding:40px;text-align:center;box-shadow:var(--shadow-lg);}
+.story__big-emoji{font-size:5rem;margin-bottom:16px;}
+.story__card-main h3{font-family:var(--font-display);font-weight:700;font-size:2.4rem;color:var(--accent);letter-spacing:0.01em;margin-bottom:8px;}
+.story__card-main p{color:var(--muted);font-size:0.88rem;}
+.story__float{position:absolute;background:var(--surface);border:1px solid var(--primary-border);border-radius:var(--radius);padding:12px 18px;font-size:0.82rem;font-weight:600;white-space:nowrap;animation:floatY 5s ease-in-out infinite;box-shadow:var(--shadow);color:var(--accent);}
+.story__float--1{top:-14px;right:-10px;}
+.story__float--2{bottom:24px;left:-14px;animation-delay:2s;}
+.story__text .sec-sub{margin-bottom:24px;}
+.story__milestones{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:28px;}
+.milestone{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;box-shadow:var(--shadow);}
+.milestone-num{font-family:var(--font-display);font-weight:700;font-size:2rem;color:var(--primary-dark);letter-spacing:0.01em;}
+.milestone-label{font-size:0.76rem;color:var(--muted);margin-top:2px;}
+
+.values{padding:80px 0;background:var(--surface2);}
+.values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.val-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:30px 24px;transition:var(--transition);box-shadow:var(--shadow);}
+.val-card:hover{border-color:var(--primary-border);transform:translateY(-4px);box-shadow:var(--shadow-lg);}
+.val-icon{font-size:2.4rem;margin-bottom:14px;}
+.val-card h3{font-family:var(--font-body);font-size:1rem;font-weight:700;color:var(--accent);margin-bottom:8px;}
+.val-card p{color:var(--muted);font-size:0.85rem;line-height:1.72;}
+
+.team{padding:80px 0;background:var(--bg);}
+.team-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:22px;}
+.team-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:28px;text-align:center;transition:var(--transition);box-shadow:var(--shadow);}
+.team-card:hover{border-color:var(--primary-border);transform:translateY(-4px);box-shadow:var(--shadow-lg);}
+.team-avatar{width:72px;height:72px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.8rem;font-weight:800;margin:0 auto 16px;border:2px solid var(--primary-border);}
+.team-card h3{font-size:1rem;font-weight:700;color:var(--accent);margin-bottom:4px;}
+.team-role{font-size:0.76rem;color:var(--primary-dark);font-weight:600;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;}
+.team-card p{font-size:0.8rem;color:var(--muted);line-height:1.65;}
+
+.timeline{padding:80px 0;background:var(--surface2);}
+.timeline-list{max-width:640px;margin:0 auto;position:relative;}
+.timeline-list::before{content:'';position:absolute;left:20px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--primary),transparent);}
+.tl-item{display:flex;gap:24px;margin-bottom:36px;position:relative;}
+.tl-dot{width:40px;height:40px;border-radius:50%;background:var(--primary);color:#fff;font-family:var(--font-display);font-weight:700;font-size:0.9rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative;z-index:1;box-shadow:0 4px 12px var(--primary-glow);}
+.tl-body{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px 22px;flex:1;transition:var(--transition);box-shadow:var(--shadow);}
+.tl-body:hover{border-color:var(--primary-border);}
+.tl-year{font-size:0.72rem;color:var(--primary-dark);font-weight:700;letter-spacing:0.1em;margin-bottom:4px;}
+.tl-body h3{font-size:0.95rem;font-weight:700;color:var(--accent);margin-bottom:6px;}
+.tl-body p{font-size:0.83rem;color:var(--muted);line-height:1.65;}
+
+.stats-band{padding:64px 0;background:var(--accent);}
+.stats-band-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center;}
+.sb-num{font-family:var(--font-display);font-weight:700;font-size:3.5rem;color:var(--primary);letter-spacing:0.01em;line-height:1;}
+.sb-label{font-size:0.8rem;color:rgba(255,255,255,0.65);text-transform:uppercase;letter-spacing:0.1em;margin-top:4px;}
+
+.about-cta{padding:80px 0;text-align:center;background:var(--bg);}
+.about-cta h2{font-family:var(--font-display);font-weight:700;font-size:clamp(2rem,5vw,3.5rem);letter-spacing:0.01em;color:var(--accent);margin-bottom:14px;}
+.about-cta h2 span{color:var(--primary);}
+.about-cta p{color:var(--muted);margin-bottom:32px;max-width:480px;margin-left:auto;margin-right:auto;}
+@media(max-width:900px){.story__inner{grid-template-columns:1fr;}.story__float{display:none;}.values-grid{grid-template-columns:repeat(2,1fr);}.stats-band-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:640px){.values-grid{grid-template-columns:1fr;}.story__milestones{grid-template-columns:1fr 1fr;}.stats-band-grid{grid-template-columns:1fr 1fr;}}
+</style>
+</head>
+<body>
+<div id="nav-placeholder"></div>
+
+<section class="page-hero">
+  <div class="container page-hero__content">
+    <div class="page-hero__breadcrumb"><a href="index.html">Home</a><span>/</span><span>About Us</span></div>
+    <h1>Our <span>Story</span></h1>
+    <p>From a single car in Gulshan Iqbal to Karachi's most trusted rental service — here's how AL-Matar was built.</p>
+  </div>
+</section>
+
+<section class="story">
+  <div class="container">
+    <div class="story__inner">
+      <div class="story__visual" data-aos>
+        <div class="story__card-main">
+          <div class="story__big-emoji">🚗</div>
+          <h3>AL-Matar Rentals</h3>
+          <p>Based in Gulshan Iqbal, Karachi<br>Serving Pakistan since 2018</p>
+        </div>
+        <div class="story__float story__float--1">⭐ 4.9 — 1,500+ Happy Clients</div>
+        <div class="story__float story__float--2">📍 Gulshan Iqbal HQ</div>
+      </div>
+      <div class="story__text" data-aos data-delay="2">
+        <span class="sec-eyebrow">Our Story</span>
+        <h2 class="sec-title">Built on Trust,<br>Driven by Service</h2>
+        <p class="sec-sub">AL-Matar Rentals started in 2018 with just one car and a simple belief: Karachi deserves a car rental service that's honest, reliable, and treats every customer like family.</p>
+        <p style="color:var(--muted);font-size:0.88rem;line-height:1.78;margin-bottom:20px;">What began as a small operation in Gulshan Iqbal has grown into a fleet of 50+ verified vehicles serving thousands of families, corporates, and travelers across all of Karachi — and beyond.</p>
+        <p style="color:var(--muted);font-size:0.88rem;line-height:1.78;">Today, AL-Matar Rentals is the #1 choice in Gulshan Iqbal with a 4.9-star rating across 1,500+ real reviews. Every car we deliver carries our promise: <strong style="color:var(--accent);">clean, safe, on time, no hidden charges.</strong></p>
+        <div class="story__milestones">
+          <div class="milestone"><div class="milestone-num" data-count="50">0</div><div class="milestone-label">Cars in Fleet</div></div>
+          <div class="milestone"><div class="milestone-num" data-count="1500">0</div><div class="milestone-label">Happy Clients</div></div>
+          <div class="milestone"><div class="milestone-num">4.9★</div><div class="milestone-label">Average Rating</div></div>
+          <div class="milestone"><div class="milestone-num">24/7</div><div class="milestone-label">Always Available</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="stats-band">
+  <div class="container">
+    <div class="stats-band-grid" data-aos>
+      <div><div class="sb-num" data-count="6">0</div><div class="sb-label">Years in Business</div></div>
+      <div><div class="sb-num" data-count="50">0</div><div class="sb-label">Cars Available</div></div>
+      <div><div class="sb-num" data-count="1500">0</div><div class="sb-label">Trips Completed</div></div>
+      <div><div class="sb-num" data-count="12">0</div><div class="sb-label">Areas Covered</div></div>
+    </div>
+  </div>
+</div>
+
+<section class="values">
+  <div class="container">
+    <div class="sec-header center" data-aos>
+      <span class="sec-eyebrow">Our Values</span>
+      <h2 class="sec-title">What We Stand For</h2>
+    </div>
+    <div class="values-grid">
+      <div class="val-card" data-aos><div class="val-icon">🤝</div><h3>Honesty First</h3><p>No hidden charges. No surprise fees. What you see in our calculator is exactly what you pay. Every time, guaranteed.</p></div>
+      <div class="val-card" data-aos data-delay="1"><div class="val-icon">🛡️</div><h3>Your Safety Always</h3><p>Every vehicle is insured, regularly serviced, and cleaned before delivery. Our drivers are licensed and background-verified.</p></div>
+      <div class="val-card" data-aos data-delay="2"><div class="val-icon">⚡</div><h3>Speed & Reliability</h3><p>15-minute WhatsApp confirmation. On-time delivery. If something goes wrong, we fix it immediately at no cost to you.</p></div>
+      <div class="val-card" data-aos><div class="val-icon">❤️</div><h3>Customer First</h3><p>From budget travelers to corporate executives — every client gets the same attention. Your satisfaction is our only KPI.</p></div>
+      <div class="val-card" data-aos data-delay="1"><div class="val-icon">🌱</div><h3>Community Roots</h3><p>Born and raised in Gulshan Iqbal. We reinvest in our community, hire locally, and take pride in representing Karachi's spirit.</p></div>
+      <div class="val-card" data-aos data-delay="2"><div class="val-icon">🚀</div><h3>Always Improving</h3><p>We listen to every review and feedback. From new cars to better features — we're constantly evolving to serve you better.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="team">
+  <div class="container">
+    <div class="sec-header center" data-aos>
+      <span class="sec-eyebrow">The Team</span>
+      <h2 class="sec-title">The People Behind Your Ride</h2>
+    </div>
+    <div class="team-grid">
+      <div class="team-card" data-aos><div class="team-avatar" style="background:var(--primary-subtle);color:var(--primary-dark);">🧑‍💼</div><h3>Muhammad Matar</h3><div class="team-role">Founder & CEO</div><p>Started AL-Matar Rentals in 2018 with one Corolla and a dream to build Karachi's best rental service.</p></div>
+      <div class="team-card" data-aos data-delay="1"><div class="team-avatar" style="background:#dbeafe;color:#1d4ed8;">👨‍💻</div><h3>Bilal Ahmed</h3><div class="team-role">Operations Manager</div><p>Ensures every booking runs smoothly — from the WhatsApp confirmation to the car arriving at your door on time.</p></div>
+      <div class="team-card" data-aos data-delay="2"><div class="team-avatar" style="background:var(--success-bg);color:#15803d;">🧑‍🔧</div><h3>Hassan Raza</h3><div class="team-role">Fleet Manager</div><p>Keeps our 50+ cars in top condition — maintenance, cleaning, insurance, safety checks. Every single day.</p></div>
+      <div class="team-card" data-aos data-delay="3"><div class="team-avatar" style="background:#f3e8ff;color:#7c3aed;">📞</div><h3>Sara Khan</h3><div class="team-role">Customer Support Lead</div><p>Available 24/7 to handle your bookings, questions, and ensure your rental experience is always excellent.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="timeline">
+  <div class="container">
+    <div class="sec-header center" data-aos>
+      <span class="sec-eyebrow">Our Journey</span>
+      <h2 class="sec-title">How We Got Here</h2>
+    </div>
+    <div class="timeline-list" data-aos>
+      <div class="tl-item"><div class="tl-dot">18</div><div class="tl-body"><div class="tl-year">2018</div><h3>The Beginning</h3><p>Started with 1 Toyota Corolla and a WhatsApp number. First booking came within the week from a Gulshan Iqbal neighbor.</p></div></div>
+      <div class="tl-item"><div class="tl-dot">19</div><div class="tl-body"><div class="tl-year">2019</div><h3>Fleet Expansion</h3><p>Added 5 more cars — economy to sedan. First corporate client signed: a Gulshan Iqbal-based tech company.</p></div></div>
+      <div class="tl-item"><div class="tl-dot">20</div><div class="tl-body"><div class="tl-year">2020</div><h3>Survived & Thrived</h3><p>Despite the pandemic, pivoted to essential travel and medical transport. Supported Karachi's community in tough times.</p></div></div>
+      <div class="tl-item"><div class="tl-dot">21</div><div class="tl-body"><div class="tl-year">2021</div><h3>SUV & Luxury Launch</h3><p>Introduced Toyota Fortuner, Prado, and Land Cruiser V8. First wedding and VIP event bookings.</p></div></div>
+      <div class="tl-item"><div class="tl-dot">23</div><div class="tl-body"><div class="tl-year">2023</div><h3>50 Cars & Counting</h3><p>Reached 50+ car fleet milestone. Expanded service to all Karachi districts and outstation trips across Pakistan.</p></div></div>
+      <div class="tl-item"><div class="tl-dot">25</div><div class="tl-body"><div class="tl-year">2025</div><h3>1,500+ Happy Clients</h3><p>Crossed 1,500 verified reviews with 4.9 star average. Launched website, online booking system, and price calculator.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="about-cta">
+  <div class="container">
+    <div data-aos>
+      <h2>Ready to Join the <span>AL-Matar Family?</span></h2>
+      <p>Book your first ride with us and experience why 1,500+ Karachiites trust us for every journey.</p>
+      <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+        <a href="https://wa.me/923001234567?text=Assalamualaikum!%20I%20want%20to%20book%20a%20car%20from%20AL-Matar%20Rentals." class="btn btn-wa btn-lg" target="_blank">Book on WhatsApp</a>
+        <a href="fleet.html" class="btn btn-outline btn-lg">See Our Fleet</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="footer-placeholder"></div>
+<script src="js/components.js"></script>
+<script src="js/cars-data.js"></script>
+<script src="js/cars-loader.js"></script>
+<script>
+document.getElementById('nav-placeholder').innerHTML = getNavbar('about');
+document.getElementById('footer-placeholder').innerHTML = getFooter();
+</script>
+<script src="js/global.js"></script>
+</body>
+</html>

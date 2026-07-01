@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Book a Car — AL-Matar Rentals Karachi</title>
+<meta name="description" content="Book your car from AL-Matar Rentals, Gulshan Iqbal Karachi. Use our price calculator, select your car and book via WhatsApp in minutes."/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/global.css">
+<style>
+.booking-layout{display:grid;grid-template-columns:1fr 400px;gap:40px;padding:60px 0 100px;align-items:start;background:var(--bg);}
+
+.booking-form-panel{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-xl);padding:40px;box-shadow:var(--shadow);}
+.booking-form-panel>h2{font-family:var(--font-display);font-weight:700;font-size:1.6rem;color:var(--accent);margin-bottom:6px;}
+.booking-form-panel>.panel-sub{color:var(--muted);font-size:0.88rem;margin-bottom:28px;}
+
+.step-indicator{display:flex;align-items:center;margin-bottom:36px;}
+.step-wrap{display:flex;align-items:center;flex:1;}
+.step-wrap:last-child{flex:0;}
+.step-dot{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.78rem;font-weight:700;flex-shrink:0;background:var(--surface2);color:var(--muted);border:1.5px solid var(--border);transition:all 0.3s;position:relative;z-index:1;}
+.step-dot.active{background:var(--primary);color:#fff;border-color:var(--primary);box-shadow:0 0 0 4px var(--primary-subtle);}
+.step-dot.done{background:var(--success);color:#fff;border-color:var(--success);}
+.step-dot.done::after{content:'✓';}
+.step-dot.done span{display:none;}
+.step-line{flex:1;height:2px;background:var(--border);transition:background 0.3s;margin:0 4px;}
+.step-line.done{background:var(--success);}
+.step-labels{display:flex;justify-content:space-between;margin-top:8px;margin-bottom:24px;}
+.step-label-txt{font-size:0.68rem;color:var(--muted);text-align:center;flex:1;}
+.step-label-txt.active{color:var(--primary-dark);font-weight:700;}
+.step-label-txt.done{color:#15803d;}
+
+.booking-step{display:none;flex-direction:column;gap:18px;animation:fadeUp 0.3s ease;}
+.booking-step.active{display:flex;}
+.step-heading{font-size:0.82rem;color:var(--muted);margin-top:-8px;padding-bottom:14px;border-bottom:1px solid var(--border);}
+.step-heading strong{color:var(--accent);}
+.step-nav{display:flex;gap:12px;margin-top:8px;}
+
+.booking-feats{display:flex;flex-direction:column;gap:8px;background:var(--success-bg);border:1px solid var(--success-border);border-radius:var(--radius);padding:16px 18px;}
+.booking-feat{display:flex;align-items:center;gap:10px;font-size:0.84rem;color:#15803d;}
+
+.review-box{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius);padding:20px;display:flex;flex-direction:column;gap:10px;font-size:0.86rem;}
+.review-row{display:flex;gap:12px;align-items:flex-start;}
+.review-row .rk{color:var(--muted);min-width:130px;flex-shrink:0;font-size:0.8rem;}
+.review-row .rv{color:var(--accent);font-weight:600;}
+
+.booking-sidebar{position:sticky;top:100px;display:flex;flex-direction:column;gap:20px;}
+
+.calc-box{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-xl);padding:32px;box-shadow:var(--shadow);}
+.calc-box h3{font-family:var(--font-display);font-weight:700;font-size:1.2rem;color:var(--accent);margin-bottom:6px;}
+.calc-box .calc-sub{font-size:0.78rem;color:var(--muted);margin-bottom:20px;}
+.calc-fields{display:flex;flex-direction:column;gap:14px;margin-bottom:20px;}
+.calc-promo-row{display:flex;gap:8px;}
+.calc-promo-row input{flex:1;background:var(--surface2);border:1.5px solid var(--border);border-radius:var(--radius);padding:11px 14px;color:var(--text);font-size:0.84rem;outline:none;transition:var(--transition);}
+.calc-promo-row input:focus{border-color:var(--primary);box-shadow:0 0 0 3px var(--primary-subtle);}
+.promo-msg{font-size:0.78rem;margin-top:5px;min-height:18px;}
+.promo-hint{font-size:0.72rem;color:var(--muted);margin-top:3px;}
+
+.breakdown{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius);padding:18px;display:flex;flex-direction:column;gap:10px;margin-bottom:14px;}
+.bline{display:flex;justify-content:space-between;align-items:center;font-size:0.86rem;}
+.bline .bl{color:var(--muted);}
+.bline .br{color:var(--text);font-weight:500;}
+.bline.discount .bl,.bline.discount .br{color:#15803d;}
+.bline.total-line .bl{color:var(--accent);font-weight:700;font-size:0.95rem;}
+.bline.total-line .br{color:var(--primary-dark);font-family:var(--font-display);font-weight:700;font-size:1.7rem;letter-spacing:0.01em;line-height:1;}
+.bdivider{height:1px;background:var(--border);}
+.calc-note{background:var(--success-bg);border:1px solid var(--success-border);border-radius:var(--radius);padding:10px 14px;font-size:0.78rem;color:#15803d;margin-bottom:14px;}
+
+.quick-contact{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-xl);padding:24px;box-shadow:var(--shadow);}
+.quick-contact h3{font-family:var(--font-body);font-size:0.95rem;font-weight:700;color:var(--accent);margin-bottom:14px;}
+.qc-item{display:flex;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid var(--border);font-size:0.84rem;}
+.qc-item:last-child{border:none;padding-bottom:0;}
+.qc-item a{color:var(--muted);transition:color var(--transition);}
+.qc-item a:hover{color:var(--primary-dark);}
+
+.booking-faq{padding:80px 0;background:var(--surface2);}
+.faq-list{max-width:700px;margin:0 auto;display:flex;flex-direction:column;gap:10px;}
+.faq-item{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);}
+.faq-q{width:100%;display:flex;justify-content:space-between;align-items:center;padding:18px 22px;background:none;border:none;color:var(--accent);font-size:0.88rem;font-weight:600;cursor:pointer;text-align:left;gap:14px;transition:color 0.2s;}
+.faq-q.open{color:var(--primary-dark);}
+.faq-q span:last-child{font-size:1.3rem;font-weight:300;color:var(--muted);flex-shrink:0;transition:transform 0.3s;}
+.faq-q.open span:last-child{transform:rotate(45deg);color:var(--primary);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height 0.4s ease;}
+.faq-a p{padding:0 22px 18px;color:var(--muted);font-size:0.85rem;line-height:1.75;}
+
+@media(max-width:1000px){.booking-layout{grid-template-columns:1fr;}.booking-sidebar{position:static;}}
+@media(max-width:640px){.booking-form-panel{padding:24px;}}
+</style>
+</head>
+<body>
+<div id="nav-placeholder"></div>
+
+<section class="page-hero">
+  <div class="container page-hero__content">
+    <div class="page-hero__breadcrumb"><a href="index.html">Home</a><span>/</span><span>Book a Car</span></div>
+    <h1>Book Your <span>Car</span></h1>
+    <p>Fill out the 3-step form — we'll confirm your booking on WhatsApp within 15 minutes. Available 24/7. No advance payment needed.</p>
+  </div>
+</section>
+
+<div class="container">
+  <div class="booking-layout">
+
+    <div class="booking-form-panel" data-aos>
+      <h2>Booking Request Form</h2>
+      <p class="panel-sub">Complete 3 quick steps — your booking goes straight to our WhatsApp team.</p>
+
+      <div class="step-indicator">
+        <div class="step-wrap">
+          <div class="step-dot active" id="dot1"><span>1</span></div>
+          <div class="step-line" id="line1"></div>
+        </div>
+        <div class="step-wrap">
+          <div class="step-dot" id="dot2"><span>2</span></div>
+          <div class="step-line" id="line2"></div>
+        </div>
+        <div class="step-wrap">
+          <div class="step-dot" id="dot3"><span>3</span></div>
+        </div>
+      </div>
+      <div class="step-labels">
+        <span class="step-label-txt active" id="lbl1">Your Details</span>
+        <span class="step-label-txt" id="lbl2">Car & Dates</span>
+        <span class="step-label-txt" id="lbl3">Confirm</span>
+      </div>
+
+      <div class="booking-step active" id="step1">
+        <p class="step-heading"><strong>Step 1 of 3</strong> — Enter your contact details</p>
+        <div class="form-row-2">
+          <div class="form-group"><label>Full Name *</label><input type="text" id="bName" placeholder="e.g. Ahmed Khan"/></div>
+          <div class="form-group"><label>WhatsApp Number *</label><input type="tel" id="bPhone" placeholder="e.g. 03001234567"/></div>
+        </div>
+        <div class="form-group"><label>Email Address (optional)</label><input type="email" id="bEmail" placeholder="yourname@email.com"/></div>
+        <div class="form-group"><label>Pickup Location *</label><input type="text" id="bLoc" placeholder="e.g. Gulshan Block 7, Karachi"/></div>
+        <div class="step-nav">
+          <button class="btn btn-gold btn-full" onclick="goStep(2)">Next → Select Your Car</button>
+        </div>
+      </div>
+
+      <div class="booking-step" id="step2">
+        <p class="step-heading"><strong>Step 2 of 3</strong> — Choose your car and package</p>
+        <div class="form-group">
+          <label>Select Car *</label>
+          <select id="bCar"><option value="">Choose a car</option></select>
+        </div>
+        <div class="form-row-2">
+          <div class="form-group"><label>Pickup Date *</label><input type="date" id="bPickup"/></div>
+          <div class="form-group"><label>Pickup Time</label><input type="time" id="bTime" value="10:00"/></div>
+        </div>
+        <div class="form-group">
+          <label>Package (Hours) *</label>
+          <select id="bPackage">
+            <option value="5">5 Hours</option>
+            <option value="10">10 Hours</option>
+            <option value="12">12 Hours</option>
+            <option value="20">20 Hours</option>
+            <option value="24">24 Hours (Full Day)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Trip Type</label>
+          <select id="bTrip">
+            <option value="0">City — Within Karachi</option>
+            <option value="2000">Outstation (+PKR 2,000)</option>
+            <option value="5000">Long Route — Lahore / Islamabad (+PKR 5,000)</option>
+          </select>
+        </div>
+        <div style="background:var(--success-bg);border:1px solid var(--success-border);border-radius:var(--radius);padding:10px 14px;font-size:0.8rem;color:#15803d;">
+          ✓ Professional driver is included with every booking
+        </div>
+        <div class="step-nav">
+          <button class="btn btn-outline" onclick="goStep(1)">← Back</button>
+          <button class="btn btn-gold" style="flex:1" onclick="goStep(3)">Next → Review & Confirm</button>
+        </div>
+      </div>
+
+      <div class="booking-step" id="step3">
+        <p class="step-heading"><strong>Step 3 of 3</strong> — Review your booking and send</p>
+        <div class="review-box" id="reviewBox"></div>
+        <div class="form-group">
+          <label>Special Requests (optional)</label>
+          <textarea id="bNotes" rows="3" placeholder="e.g. Child seat needed, going to airport, wedding event, early morning pickup..."></textarea>
+        </div>
+        <div class="booking-feats">
+          <div class="booking-feat">✓ No advance payment — pay on delivery</div>
+          <div class="booking-feat">✓ Free cancellation anytime before pickup</div>
+          <div class="booking-feat">✓ Car delivered to your doorstep</div>
+          <div class="booking-feat">✓ We reply within 15 minutes, 24/7</div>
+        </div>
+        <div class="step-nav">
+          <button class="btn btn-outline" onclick="goStep(2)">← Back</button>
+          <button class="btn btn-wa" style="flex:1" onclick="submitBooking()">Send Booking on WhatsApp</button>
+        </div>
+        <p style="text-align:center;font-size:0.74rem;color:var(--muted);margin-top:10px;">
+          We reply within 15 minutes · Available 24 hours, 7 days
+        </p>
+      </div>
+    </div>
+
+    <div class="booking-sidebar">
+
+      <div class="calc-box" id="calculator" data-aos data-delay="2">
+        <h3>Price Calculator</h3>
+        <p class="calc-sub">Instant estimate — no hidden charges ever.</p>
+        <div class="calc-fields">
+          <div class="form-group">
+            <label>Car</label>
+            <select id="cCar" onchange="updateCalc()"></select>
+          </div>
+          <div class="form-group">
+            <label>Package</label>
+            <select id="cPackage" onchange="updateCalc()">
+              <option value="5">5 Hours</option>
+              <option value="10">10 Hours</option>
+              <option value="12">12 Hours</option>
+              <option value="20">20 Hours</option>
+              <option value="24">24 Hours (Full Day)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Route Type</label>
+            <select id="cRoute" onchange="updateCalc()">
+              <option value="0">City — Within Karachi</option>
+              <option value="2000">Outstation (+PKR 2,000)</option>
+              <option value="5000">Long route (+PKR 5,000)</option>
+            </select>
+          </div>
+          <div style="background:var(--success-bg);border:1px solid var(--success-border);border-radius:var(--radius);padding:8px 12px;font-size:0.76rem;color:#15803d;">
+            ✓ Driver included in every package
+          </div>
+          <div>
+            <div class="calc-promo-row">
+              <input type="text" id="cPromo" placeholder="Promo code e.g. GULSHAN15" onkeydown="if(event.key==='Enter')calcApplyPromo()"/>
+              <button class="btn btn-outline btn-sm" onclick="calcApplyPromo()">Apply</button>
+            </div>
+            <p class="promo-msg" id="cPromoMsg"></p>
+            <p class="promo-hint">Try: GULSHAN15 · MATAR20 · NEWCLIENT · SUMMER30</p>
+          </div>
+        </div>
+        <div class="breakdown">
+          <div class="bline"><span class="bl">Package price (driver incl.)</span><span class="br" id="rBase">PKR 0</span></div>
+          <div class="bline"><span class="bl">Route surcharge</span><span class="br" id="rRoute">PKR 0</span></div>
+          <div class="bline discount" id="rDiscLine" style="display:none">
+            <span class="bl">Discount</span><span class="br" id="rDisc">-PKR 0</span>
+          </div>
+          <div class="bdivider"></div>
+          <div class="bline total-line">
+            <span class="bl">Total Estimate</span>
+            <span class="br" id="rTotal">PKR 0</span>
+          </div>
+        </div>
+        <div class="calc-note">No advance payment. Pay on delivery only.</div>
+        <a href="#" id="calcWaBtn" class="btn btn-wa btn-full" target="_blank">Book This on WhatsApp</a>
+      </div>
+
+      <div class="quick-contact" data-aos data-delay="3">
+        <h3>Need Help Booking?</h3>
+        <div class="qc-item"><span>📲</span><a href="https://wa.me/923001234567" target="_blank">WhatsApp: 0300-1234567</a></div>
+        <div class="qc-item"><span>📞</span><a href="tel:+923001234567">Call: 0300-1234567</a></div>
+        <div class="qc-item"><span>📍</span><span style="color:var(--muted)">Gulshan Iqbal, Karachi</span></div>
+        <div class="qc-item"><span>🕐</span><span style="color:#15803d;font-weight:600;">24/7 — Always Open</span></div>
+        <a href="https://wa.me/923001234567?text=Assalamualaikum!%20I%20need%20help%20booking%20a%20car%20from%20AL-Matar%20Rentals." class="btn btn-wa btn-full" target="_blank" style="margin-top:14px;">Chat With Us</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<section class="booking-faq" id="faq">
+  <div class="container">
+    <div class="sec-header center" data-aos>
+      <span class="sec-eyebrow">FAQ</span>
+      <h2 class="sec-title">Booking Questions</h2>
+    </div>
+    <div class="faq-list" data-aos>
+      <div class="faq-item"><button class="faq-q"><span>Do I need to pay in advance?</span><span>+</span></button><div class="faq-a"><p>Absolutely not. Pay only when the car is delivered to your location. 100% risk-free booking with AL-Matar Rentals.</p></div></div>
+      <div class="faq-item"><button class="faq-q"><span>How quickly will you confirm my booking?</span><span>+</span></button><div class="faq-a"><p>We reply within 15 minutes on WhatsApp — 24 hours a day, 7 days a week, including holidays.</p></div></div>
+      <div class="faq-item"><button class="faq-q"><span>Can I cancel or modify my booking?</span><span>+</span></button><div class="faq-a"><p>Yes — free cancellation anytime before pickup. To modify dates, just WhatsApp us and we'll adjust as long as the car is available.</p></div></div>
+      <div class="faq-item"><button class="faq-q"><span>What promo codes are currently active?</span><span>+</span></button><div class="faq-a"><p>Current codes: GULSHAN15 (15% off), MATAR20 (20% off), NEWCLIENT (10% for first-timers), SUMMER30 (30% seasonal). Enter in the calculator.</p></div></div>
+      <div class="faq-item"><button class="faq-q"><span>Is airport pickup and drop-off available?</span><span>+</span></button><div class="faq-a"><p>Yes — 24/7 pickup and drop-off from Jinnah International Airport, Karachi. Book at least 2 hours in advance for best availability.</p></div></div>
+      <div class="faq-item"><button class="faq-q"><span>What documents do I need to rent a car?</span><span>+</span></button><div class="faq-a"><p>Just your CNIC. Every booking comes with a professional driver included, so no driving license is required from you.</p></div></div>
+      <div class="faq-item"><button class="faq-q"><span>Can I extend my package while on trip?</span><span>+</span></button><div class="faq-a"><p>Yes — just WhatsApp our driver or our team before your package hours run out. We'll extend at the same hourly rate, subject to availability.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<div id="footer-placeholder"></div>
+<script src="js/components.js"></script>
+<script src="js/cars-data.js"></script>
+<script src="js/cars-loader.js"></script>
+<script>
+document.getElementById('nav-placeholder').innerHTML = getNavbar('booking');
+document.getElementById('footer-placeholder').innerHTML = getFooter();
+
+let CARS = [];
+
+function populateCarSelects() {
+  const bCarSel = document.getElementById('bCar');
+  CARS.forEach(c => {
+    const opt = document.createElement('option');
+    opt.value = `${c.name} — ${c.type}|${c.hourlyRate}`;
+    opt.textContent = `${c.name} — ${c.type} (PKR ${c.hourlyRate.toLocaleString()}/hr, driver incl.)`;
+    bCarSel.appendChild(opt);
+  });
+
+  const cCarSel = document.getElementById('cCar');
+  CARS.forEach(c => {
+    const opt = document.createElement('option');
+    opt.value = c.hourlyRate;
+    opt.textContent = `${c.name} — ${c.type}`;
+    cCarSel.appendChild(opt);
+  });
+}
+
+const today = new Date().toISOString().split('T')[0];
+document.getElementById('bPickup').min = today;
+
+const PROMOS = { 'MATAR20':20, 'GULSHAN15':15, 'EID25':25, 'NEWCLIENT':10, 'KARACHI10':10, 'SUMMER30':30 };
+let promoDiscount = 0;
+
+function updateCalc() {
+  const hourlyRate = parseInt(document.getElementById('cCar').value) || 0;
+  const hours      = parseInt(document.getElementById('cPackage').value) || 5;
+  const route      = parseInt(document.getElementById('cRoute').value) || 0;
+
+  const base   = hourlyRate * hours;
+  const rFee   = route;
+  const sub    = base + rFee;
+  const disc   = Math.round(sub * promoDiscount / 100);
+  const total  = sub - disc;
+
+  document.getElementById('rBase').textContent   = `PKR ${base.toLocaleString()}`;
+  document.getElementById('rRoute').textContent  = `PKR ${rFee.toLocaleString()}`;
+  document.getElementById('rTotal').textContent  = `PKR ${total.toLocaleString()}`;
+
+  const dl = document.getElementById('rDiscLine');
+  if (disc > 0) {
+    dl.style.display = 'flex';
+    document.getElementById('rDisc').textContent = `-PKR ${disc.toLocaleString()}`;
+  } else {
+    dl.style.display = 'none';
+  }
+
+  const carName = document.getElementById('cCar').selectedOptions[0]?.text || 'car';
+  const waMsg = `Assalamualaikum!\n\nPrice estimate from AL-Matar Rentals calculator:\n• Car: ${carName}\n• Package: ${hours} hours (driver included)\n• Package price: PKR ${base.toLocaleString()}\n• Route charge: PKR ${rFee.toLocaleString()}\n• Discount: -PKR ${disc.toLocaleString()}\n\n*Total Estimate: PKR ${total.toLocaleString()}*\n\nPlease confirm availability and booking!`;
+  document.getElementById('calcWaBtn').href = `https://wa.me/923001234567?text=${encodeURIComponent(waMsg)}`;
+}
+
+function calcApplyPromo() {
+  const code = document.getElementById('cPromo').value.trim().toUpperCase();
+  const msg  = document.getElementById('cPromoMsg');
+  if (PROMOS[code]) {
+    promoDiscount = PROMOS[code];
+    msg.textContent  = `"${code}" applied — ${promoDiscount}% off`;
+    msg.style.color  = '#15803d';
+    toast(`Promo code ${code} applied — ${promoDiscount}% discount`, 'success');
+  } else {
+    promoDiscount    = 0;
+    msg.textContent  = 'Invalid promo code. Try: GULSHAN15, MATAR20';
+    msg.style.color  = '#b91c1c';
+  }
+  updateCalc();
+}
+
+let currentStep = 1;
+
+function goStep(n) {
+  if (n > currentStep) {
+    if (currentStep === 1) {
+      if (!document.getElementById('bName').value.trim())  { toast('Please enter your full name', 'error');       return; }
+      if (!document.getElementById('bPhone').value.trim()) { toast('Please enter your WhatsApp number', 'error'); return; }
+      if (!document.getElementById('bLoc').value.trim())   { toast('Please enter your pickup location', 'error'); return; }
+    }
+    if (currentStep === 2) {
+      if (!document.getElementById('bCar').value)          { toast('Please select a car', 'error');               return; }
+      if (!document.getElementById('bPickup').value)       { toast('Please select a pickup date', 'error');       return; }
+    }
+  }
+
+  if (n === 3) buildReview();
+
+  const prev = currentStep;
+  currentStep = n;
+
+  for (let i = 1; i <= 3; i++) {
+    const dot = document.getElementById(`dot${i}`);
+    const lbl = document.getElementById(`lbl${i}`);
+    dot.classList.remove('active','done');
+    lbl.classList.remove('active','done');
+    if (i < 3) document.getElementById(`line${i}`).classList.remove('done');
+  }
+  for (let i = 1; i < n; i++) {
+    document.getElementById(`dot${i}`).classList.add('done');
+    document.getElementById(`lbl${i}`).classList.add('done');
+    if (i < 3) document.getElementById(`line${i}`).classList.add('done');
+  }
+  document.getElementById(`dot${n}`).classList.add('active');
+  document.getElementById(`lbl${n}`).classList.add('active');
+
+  document.getElementById(`step${prev}`).classList.remove('active');
+  document.getElementById(`step${n}`).classList.add('active');
+
+  document.querySelector('.booking-form-panel').scrollIntoView({ behavior:'smooth', block:'start' });
+}
+
+function buildReview() {
+  const carVal      = document.getElementById('bCar').value || '';
+  const [carName, hourlyRateStr] = carVal.split('|');
+  const hourlyRate  = parseInt(hourlyRateStr) || 0;
+  const hours       = parseInt(document.getElementById('bPackage').value) || 5;
+  const routeFee    = parseInt(document.getElementById('bTrip').value) || 0;
+  const tripSel     = document.getElementById('bTrip').selectedOptions[0]?.text || 'City';
+  const total       = (hourlyRate * hours) + routeFee;
+
+  const rows = [
+    ['Name',       document.getElementById('bName').value    || '—'],
+    ['WhatsApp',   document.getElementById('bPhone').value   || '—'],
+    ['Email',      document.getElementById('bEmail').value   || 'Not provided'],
+    ['Car',        carName || '—'],
+    ['Pickup',     document.getElementById('bPickup').value  || '—'],
+    ['Time',       document.getElementById('bTime').value    || '10:00'],
+    ['Package',    `${hours} hours (driver included)`],
+    ['Trip Type',  tripSel],
+    ['Est. Total', `PKR ${total.toLocaleString()}`],
+    ['Location',   document.getElementById('bLoc').value     || '—'],
+  ];
+
+  document.getElementById('reviewBox').innerHTML = rows.map(([k, v]) =>
+    `<div class="review-row"><span class="rk">${k}</span><span class="rv">${v}</span></div>`
+  ).join('');
+}
+
+function submitBooking() {
+  const name        = document.getElementById('bName').value.trim();
+  const phone       = document.getElementById('bPhone').value.trim();
+  const email       = document.getElementById('bEmail').value.trim();
+  const carVal      = document.getElementById('bCar').value;
+  const pickup      = document.getElementById('bPickup').value;
+  const time        = document.getElementById('bTime').value;
+  const hours       = parseInt(document.getElementById('bPackage').value) || 5;
+  const routeFee    = parseInt(document.getElementById('bTrip').value) || 0;
+  const trip        = document.getElementById('bTrip').selectedOptions[0]?.text || 'City';
+  const loc         = document.getElementById('bLoc').value.trim();
+  const notes       = document.getElementById('bNotes').value.trim();
+  const [carName, hourlyRateStr] = (carVal || '').split('|');
+  const hourlyRate  = parseInt(hourlyRateStr) || 0;
+  const total       = (hourlyRate * hours) + routeFee;
+
+  const msg = `AL-Matar Rentals — Booking Request\n\n` +
+    `Name: ${name}\n` +
+    `WhatsApp: ${phone}\n` +
+    (email ? `Email: ${email}\n` : '') +
+    `Car: ${carName || '—'}\n` +
+    `Pickup Date: ${pickup} at ${time}\n` +
+    `Package: ${hours} hours (driver included)\n` +
+    `Trip Type: ${trip}\n` +
+    `Estimated Total: PKR ${total.toLocaleString()}\n` +
+    `Location: ${loc}\n` +
+    `Notes: ${notes || 'None'}\n\n` +
+    `Sent from AL-Matar Rentals Website`;
+
+  window.open(`https://wa.me/923001234567?text=${encodeURIComponent(msg)}`, '_blank');
+  toast('Opening WhatsApp — we reply in 15 min', 'success');
+}
+
+(async function initBooking() {
+  CARS = await loadCars();
+  populateCarSelects();
+  updateCalc();
+})();
+</script>
+<script src="js/global.js"></script>
+</body>
+</html>

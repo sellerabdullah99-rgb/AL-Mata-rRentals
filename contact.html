@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Contact Us — AL-Matar Rentals Karachi</title>
+<meta name="description" content="Contact AL-Matar Rentals in Gulshan Iqbal Karachi. WhatsApp, call, or email us 24/7. Book your car or ask anything — we reply in 15 minutes."/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/global.css">
+<style>
+.contact-layout{display:grid;grid-template-columns:1fr 1fr;gap:48px;padding:72px 0 100px;align-items:start;background:var(--bg);}
+.contact-info{display:flex;flex-direction:column;gap:16px;}
+.contact-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:22px 24px;display:flex;align-items:center;gap:16px;transition:var(--transition);box-shadow:var(--shadow);}
+a.contact-card:hover{border-color:var(--primary-border);transform:translateX(5px);box-shadow:var(--shadow-lg);}
+.contact-card__icon{font-size:1.8rem;flex-shrink:0;width:50px;height:50px;background:var(--primary-subtle4);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;}
+.contact-card strong{display:block;color:var(--accent);font-size:0.9rem;margin-bottom:3px;}
+.contact-card span{color:var(--muted);font-size:0.82rem;}
+.contact-card__arrow{margin-left:auto;color:var(--muted);font-size:1.2rem;}
+.hours-box{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;box-shadow:var(--shadow);}
+.hours-box h3{font-family:var(--font-body);font-size:1rem;font-weight:700;color:var(--accent);margin-bottom:16px;}
+.hour-row{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--border);font-size:0.85rem;}
+.hour-row:last-child{border:none;}
+.hour-row span:first-child{color:var(--muted);}
+.hour-row span:last-child{color:#15803d;font-weight:600;}
+.social-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.social-btn{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:13px 16px;font-size:0.84rem;font-weight:600;transition:var(--transition);box-shadow:var(--shadow);}
+.social-btn:hover{border-color:var(--primary-border);color:var(--primary-dark);transform:translateY(-2px);}
+
+.contact-form-box{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-xl);padding:40px;display:flex;flex-direction:column;gap:18px;box-shadow:var(--shadow-lg);}
+.contact-form-box h2{font-family:var(--font-display);font-weight:700;font-size:1.7rem;color:var(--accent);margin-bottom:4px;}
+.contact-form-box>p{color:var(--muted);font-size:0.86rem;margin-bottom:8px;}
+.msg-types{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:4px;}
+.msg-type{padding:7px 16px;border-radius:50px;border:1.5px solid var(--border);background:transparent;color:var(--muted);font-size:0.78rem;font-weight:600;cursor:pointer;transition:var(--transition);}
+.msg-type.active,.msg-type:hover{background:var(--primary);border-color:var(--primary);color:#fff;}
+
+.map-section{padding:0 0 80px;background:var(--bg);}
+.map-box{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;box-shadow:var(--shadow-lg);}
+.map-header{padding:24px 28px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);}
+.map-header h3{font-family:var(--font-body);font-size:1rem;font-weight:700;color:var(--accent);}
+.map-placeholder{height:320px;background:var(--surface2);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;position:relative;overflow:hidden;}
+.map-placeholder::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(0,0,0,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,0.025) 1px,transparent 1px);background-size:40px 40px;}
+.map-pin-big{font-size:3.5rem;animation:floatY 3s ease-in-out infinite;position:relative;z-index:1;}
+.map-placeholder p{font-size:0.9rem;font-weight:600;color:var(--accent);z-index:1;}
+.map-placeholder small{font-size:0.78rem;color:var(--muted);z-index:1;}
+
+.nl-box{background:var(--surface);border:1px solid var(--primary-border);border-radius:var(--radius-xl);padding:48px;text-align:center;margin-bottom:80px;box-shadow:var(--shadow-lg);}
+.nl-box h2{font-family:var(--font-display);font-weight:700;font-size:2.2rem;color:var(--accent);letter-spacing:0.01em;margin-bottom:10px;}
+.nl-box p{color:var(--muted);margin-bottom:26px;}
+.nl-form{display:flex;max-width:440px;margin:0 auto;gap:10px;}
+.nl-form input{flex:1;background:var(--surface2);border:1.5px solid var(--border);border-radius:50px;padding:12px 20px;color:var(--text);font-size:0.88rem;outline:none;transition:var(--transition);}
+.nl-form input:focus{border-color:var(--primary);box-shadow:0 0 0 3px var(--primary-subtle);}
+@media(max-width:900px){.contact-layout{grid-template-columns:1fr;}}
+@media(max-width:640px){.social-grid{grid-template-columns:1fr;}.nl-form{flex-direction:column;}}
+</style>
+</head>
+<body>
+<div id="nav-placeholder"></div>
+
+<section class="page-hero">
+  <div class="container page-hero__content">
+    <div class="page-hero__breadcrumb"><a href="index.html">Home</a><span>/</span><span>Contact</span></div>
+    <h1>Get In <span>Touch</span></h1>
+    <p>We're available 24 hours, 7 days a week. WhatsApp us and get a reply within 15 minutes — guaranteed.</p>
+  </div>
+</section>
+
+<div class="container">
+  <div class="contact-layout">
+
+    <div class="contact-info" data-aos>
+      <a href="https://wa.me/923001234567" class="contact-card" target="_blank">
+        <div class="contact-card__icon">📲</div>
+        <div><strong>WhatsApp (Fastest)</strong><span>0300-1234567 — Reply in 15 min</span></div>
+        <span class="contact-card__arrow">→</span>
+      </a>
+      <a href="tel:+923001234567" class="contact-card">
+        <div class="contact-card__icon">📞</div>
+        <div><strong>Call Us Directly</strong><span>0300-1234567</span></div>
+        <span class="contact-card__arrow">→</span>
+      </a>
+      <a href="mailto:info@almatar.pk" class="contact-card">
+        <div class="contact-card__icon">📧</div>
+        <div><strong>Email Us</strong><span>info@almatar.pk</span></div>
+        <span class="contact-card__arrow">→</span>
+      </a>
+      <div class="contact-card">
+        <div class="contact-card__icon">📍</div>
+        <div><strong>Our Location</strong><span>Gulshan Iqbal, Karachi, Sindh, Pakistan</span></div>
+      </div>
+
+      <div class="hours-box">
+        <h3>Working Hours</h3>
+        <div class="hour-row"><span>Monday – Friday</span><span>24 Hours Open</span></div>
+        <div class="hour-row"><span>Saturday</span><span>24 Hours Open</span></div>
+        <div class="hour-row"><span>Sunday</span><span>24 Hours Open</span></div>
+        <div class="hour-row"><span>Public Holidays</span><span>24 Hours Open</span></div>
+        <div style="margin-top:14px;padding:10px 14px;background:var(--success-bg);border:1px solid var(--success-border);border-radius:var(--radius);font-size:0.8rem;color:#15803d;">
+          We never close — WhatsApp us any time.
+        </div>
+      </div>
+
+      <div>
+        <p style="font-size:0.8rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:12px;">Follow Us</p>
+        <div class="social-grid">
+          <a href="#" class="social-btn">Facebook</a>
+          <a href="#" class="social-btn">Instagram</a>
+          <a href="#" class="social-btn">YouTube</a>
+          <a href="#" class="social-btn">TikTok</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form-box" data-aos data-delay="2">
+      <h2>Send Us a Message</h2>
+      <p>Fill this form and it goes straight to our WhatsApp. We'll reply within 15 minutes.</p>
+
+      <div class="msg-types">
+        <button class="msg-type active" onclick="setType(this,'Booking Inquiry')">Book a Car</button>
+        <button class="msg-type" onclick="setType(this,'Price Question')">Pricing</button>
+        <button class="msg-type" onclick="setType(this,'Corporate Package')">Corporate</button>
+        <button class="msg-type" onclick="setType(this,'General Question')">General</button>
+      </div>
+
+      <div class="form-group"><label>Your Name *</label><input type="text" id="cName" placeholder="e.g. Ahmed Khan"/></div>
+      <div class="form-row-2">
+        <div class="form-group"><label>WhatsApp Number *</label><input type="tel" id="cPhone" placeholder="e.g. 03001234567"/></div>
+        <div class="form-group"><label>Email (optional)</label><input type="email" id="cEmail" placeholder="your@email.com"/></div>
+      </div>
+      <div class="form-group"><label>Subject</label><input type="text" id="cSubject" placeholder="e.g. I want to book a Fortuner for 3 days"/></div>
+      <div class="form-group"><label>Message *</label><textarea id="cMessage" rows="5" placeholder="Tell us what you need — car type, dates, location, any special requirements..."></textarea></div>
+      <button class="btn btn-wa btn-full" onclick="sendContact()">Send via WhatsApp</button>
+      <p style="text-align:center;font-size:0.74rem;color:var(--muted);">Or call us directly: <a href="tel:+923001234567" style="color:var(--primary-dark);">0300-1234567</a></p>
+    </div>
+
+  </div>
+</div>
+
+<div class="container map-section">
+  <div class="map-box" data-aos>
+    <div class="map-header">
+      <h3>Find Us — Gulshan Iqbal, Karachi</h3>
+      <a href="https://maps.google.com/?q=Gulshan+Iqbal+Karachi" target="_blank" class="btn btn-outline btn-sm">Open in Google Maps →</a>
+    </div>
+    <div class="map-placeholder">
+      <div class="map-pin-big">📍</div>
+      <p>AL-Matar Rentals HQ</p>
+      <small>Gulshan Iqbal, Karachi, Sindh, Pakistan</small>
+      <a href="https://maps.google.com/?q=Gulshan+Iqbal+Karachi" target="_blank" class="btn btn-gold btn-sm" style="margin-top:8px;">View on Google Maps</a>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="nl-box" data-aos>
+    <h2>Stay Updated</h2>
+    <p>Get exclusive deals, promo codes and seasonal offers sent to your WhatsApp.</p>
+    <form class="nl-form newsletter-form">
+      <input type="tel" placeholder="Your WhatsApp number e.g. 03001234567" required/>
+      <button type="submit" class="btn btn-gold">Subscribe</button>
+    </form>
+  </div>
+</div>
+
+<div id="footer-placeholder"></div>
+<script src="js/components.js"></script>
+<script src="js/cars-data.js"></script>
+<script src="js/cars-loader.js"></script>
+<script>
+document.getElementById('nav-placeholder').innerHTML = getNavbar('contact');
+document.getElementById('footer-placeholder').innerHTML = getFooter();
+
+let msgType = 'Booking Inquiry';
+function setType(btn, type) {
+  document.querySelectorAll('.msg-type').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  msgType = type;
+}
+
+function sendContact() {
+  const name = document.getElementById('cName').value.trim();
+  const phone = document.getElementById('cPhone').value.trim();
+  const subject = document.getElementById('cSubject').value.trim();
+  const message = document.getElementById('cMessage').value.trim();
+  if (!name) { toast('Please enter your name', 'error'); return; }
+  if (!phone) { toast('Please enter your WhatsApp number', 'error'); return; }
+  if (!message) { toast('Please enter your message', 'error'); return; }
+  const msg = `Assalamualaikum!\n\nType: ${msgType}\nName: ${name}\nPhone: ${phone}\nSubject: ${subject || 'N/A'}\n\nMessage:\n${message}\n\nSent from AL-Matar Rentals Contact Page`;
+  window.open(`https://wa.me/923001234567?text=${encodeURIComponent(msg)}`, '_blank');
+  toast('Opening WhatsApp — we reply in 15 min', 'success');
+}
+</script>
+<script src="js/global.js"></script>
+</body>
+</html>
