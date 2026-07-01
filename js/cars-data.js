@@ -100,9 +100,9 @@ const CARS_DATA = [
   },
   {
     "id": 4,
-    "name": "Honda Civic",
+    "name": "Haval Jolion",
     "type": "Sedan",
-    "image": "https://images.unsplash.com/photo-1606016159991-dfe4f2746ad5?w=600&q=80&auto=format&fit=crop",
+    "image": "/images/car4/car.jpeg",
     "rating": 4.9,
     "avail": "Available",
     "availClass": "avail-yes",
