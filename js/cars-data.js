@@ -158,7 +158,7 @@ const CARS_DATA = [
   },
   {
     "id": 6,
-    "name": "Toyota Fortuner",
+    "name": "Toyota Yaris sedan",
     "type": "SUV",
     "image":"/images/car6/car.jpeg",
     "rating": 5.0,
@@ -183,7 +183,7 @@ const CARS_DATA = [
       "Highway king"
     ],
     "desc": "The go-to 7-seater SUV for large families and corporate groups. Powerful diesel engine conquers outstation trips effortlessly.",
-    "hourlyRate": 1300
+    "hourlyRate": 2000
   },
   {
     "id": 7,
