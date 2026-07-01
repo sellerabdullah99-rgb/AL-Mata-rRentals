@@ -37,7 +37,7 @@ const CARS_DATA = [
       "Fuel efficient"
     ],
     "desc": "Karachi's most popular budget car. Fuel-efficient, fully AC, perfect for daily city commutes in Gulshan Iqbal and across Karachi.",
-    "hourlyRate": 350
+    "hourlyRate": 550
   },
   {
     "id": 2,
@@ -68,11 +68,11 @@ const CARS_DATA = [
       "Family trips"
     ],
     "desc": "Pakistan's most trusted sedan. Comfortable and reliable for family trips, corporate travel, and outstation journeys across Pakistan.",
-    "hourlyRate": 600
+    "hourlyRate": 1600
   },
   {
     "id": 3,
-    "name": "Honda City",
+    "name": "Alto",
     "type": "Sedan",
     "image": "/images/car2/car-img.jpeg",
     "rating": 4.7,
@@ -89,14 +89,14 @@ const CARS_DATA = [
     "fuel": "Petrol",
     "seats": "5 Seats",
     "ac": "AC",
-    "music": "Sound System",
+    "music": "None",
     "feats": [
       "Driver included",
       "City trips",
       "Comfortable ride"
     ],
     "desc": "Stylish and comfortable sedan ideal for daily commutes and city drives across Karachi. Smooth ride, great fuel economy.",
-    "hourlyRate": 650
+    "hourlyRate": 450
   },
   {
     "id": 4,
@@ -125,11 +125,11 @@ const CARS_DATA = [
       "Premium interior"
     ],
     "desc": "Sleek sporty sedan that turns heads. Perfect for weddings, events, and corporate travel. Comes with premium audio and interior.",
-    "hourlyRate": 750
+    "hourlyRate": 1200
   },
   {
     "id": 5,
-    "name": "Hyundai Tucson",
+    "name": "Toyota Hilux Vigo",
     "type": "SUV",
     "image": "/images/car5/car.jpeg",
     "rating": 4.9,
@@ -154,7 +154,7 @@ const CARS_DATA = [
       "Touch screen"
     ],
     "desc": "Modern SUV with premium features \u2014 backup camera, touchscreen, dual AC. Perfect for family outings and highway travel.",
-    "hourlyRate": 1100
+    "hourlyRate":
   },
   {
     "id": 6,
