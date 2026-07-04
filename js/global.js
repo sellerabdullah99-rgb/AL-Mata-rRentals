@@ -1,7 +1,7 @@
 // ============================================
 // AL-MATAR RENTALS — GLOBAL JS (White/Pro Theme)
 // ============================================
-const WA = '923001234567'; // ← UPDATE YOUR NUMBER
+const WA = '923412372227'; // ← UPDATE YOUR NUMBER
 
 // ── NAVBAR SCROLL ──
 const navbar = document.getElementById('navbar');
