@@ -234,187 +234,308 @@
     }
 
     /* FLEET PREVIEW — HIGH CONVERSION CARDS */
-    .fleet-preview {
-      padding: 100px 0;
-      background: var(--surface2);
-    }
+    /* FLEET PREVIEW — HIGH CONVERSION CARDS */
+.fleet-preview {
+  padding: 100px 0;
+  background: var(--surface2);
+}
 
-    .fleet-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 24px;
-    }
+.fleet-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+}
 
-    .car-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      transition: var(--transition);
-      position: relative;
-      box-shadow: var(--shadow);
-    }
+.car-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: var(--transition);
+  position: relative;
+  box-shadow: var(--shadow);
 
-    .car-card:hover {
-      border-color: var(--primary-border);
-      transform: translateY(-6px);
-      box-shadow: var(--shadow-lg);
-    }
+  /* NEW: staggered entrance on load */
+  opacity: 0;
+  transform: translateY(20px);
+  animation: cardIn .6s cubic-bezier(.2,.8,.2,1) forwards;
+}
+.fleet-grid .car-card:nth-child(1) { animation-delay: .05s; }
+.fleet-grid .car-card:nth-child(2) { animation-delay: .15s; }
+.fleet-grid .car-card:nth-child(3) { animation-delay: .25s; }
+.fleet-grid .car-card:nth-child(4) { animation-delay: .35s; }
+@keyframes cardIn {
+  to { opacity: 1; transform: translateY(0); }
+}
 
-    .car-card__badge {
-      position: absolute;
-      top: 14px;
-      left: 14px;
-      font-size: 0.65rem;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 4px 12px;
-      border-radius: 50px;
-      z-index: 2;
-    }
+.car-card:hover {
+  border-color: var(--primary-border);
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+}
 
-    .badge-gold {
-      background: var(--primary);
-      color: #fff;
-    }
+.car-card__badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 50px;
+  z-index: 2;
+}
 
-    .badge-dark {
-      background: var(--accent);
-      color: #fff;
-    }
+.badge-gold {
+  background: var(--primary);
+  color: #fff;
+  /* NEW: soft pulsing glow, using --primary so it stays on-brand automatically */
+  animation: badgePulse 2.4s ease-out infinite;
+}
+@keyframes badgePulse {
+  0%   { box-shadow: 0 0 0 0 color-mix(in srgb, var(--primary) 55%, transparent); }
+  70%  { box-shadow: 0 0 0 9px color-mix(in srgb, var(--primary) 0%, transparent); }
+  100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--primary) 0%, transparent); }
+}
 
-    .car-card__img-wrap {
-      position: relative;
-      aspect-ratio: 4/3;
-      background: var(--surface2);
-      overflow: hidden;
-    }
+.badge-dark {
+  background: var(--accent);
+  color: #fff;
+}
 
-    .car-card__img-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+.car-card__img-wrap {
+  position: relative;
+  aspect-ratio: 4/3;
+  background: var(--surface2);
+  overflow: hidden;
+}
 
-    .car-card__rating {
-      position: absolute;
-      top: 14px;
-      right: 14px;
-      background: rgba(255, 255, 255, 0.95);
-      border-radius: 50px;
-      padding: 4px 10px;
-      font-size: 0.76rem;
-      font-weight: 700;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    }
+.car-card__img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 
-    .car-card__body {
-      padding: 18px 22px 22px;
-    }
+  /* NEW: fade in + gentle zoom, instead of popping in at full size */
+  opacity: 0;
+  transition: opacity .5s ease, transform .5s cubic-bezier(.2,.8,.2,1);
+}
+.car-card__img-wrap img.loaded {
+  opacity: 1;
+}
+.car-card:hover .car-card__img-wrap img {
+  transform: scale(1.06);
+}
 
-    .car-card__name {
-      font-family: var(--font-display);
-      font-weight: 600;
-      font-size: 1.25rem;
-      color: var(--accent);
-      margin-bottom: 2px;
-    }
+/* NEW: a light "shine" sweep across the image on hover — needs one extra div
+   in the markup: <div class="car-card__shine"></div> inside .car-card__img-wrap */
+.car-card__shine {
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(115deg, transparent, rgba(255,255,255,.55), transparent);
+  transform: skewX(-18deg);
+  transition: left .75s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+.car-card:hover .car-card__shine {
+  left: 130%;
+}
 
-    .car-card__type {
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--primary-dark);
-      margin-bottom: 12px;
-    }
+.car-card__rating {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 50px;
+  padding: 4px 10px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 
-    .avail-badge {
-      display: inline-block;
-      font-size: 0.68rem;
-      font-weight: 700;
-      padding: 3px 10px;
-      border-radius: 50px;
-    }
+  /* NEW: pop in slightly after the card lands */
+  opacity: 0;
+  transform: scale(.6);
+  animation: ratingPop .4s cubic-bezier(.2,.8,.2,1) .5s forwards;
+}
+@keyframes ratingPop {
+  to { opacity: 1; transform: scale(1); }
+}
 
-    .avail-yes {
-      background: var(--success-bg);
-      color: #15803d;
-    }
+.car-card__body {
+  padding: 18px 22px 22px;
+}
 
-    .avail-few {
-      background: var(--primary-subtle);
-      color: var(--primary-dark);
-    }
+.car-card__name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: var(--accent);
+  margin-bottom: 2px;
+}
 
-    .car-specs {
-      display: flex;
-      gap: 6px;
-      flex-wrap: wrap;
-      margin: 12px 0;
-    }
+.car-card__type {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--primary-dark);
+  margin-bottom: 12px;
+}
 
-    .car-specs span {
-      font-size: 0.7rem;
-      color: var(--muted);
-      background: var(--surface2);
-      padding: 4px 9px;
-      border-radius: 6px;
-    }
+.avail-badge {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 50px;
+}
 
-    .car-feats {
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
-      margin-bottom: 14px;
-    }
+.avail-yes {
+  background: var(--success-bg);
+  color: #15803d;
+  /* NEW: quiet pulsing dot to read as "live" */
+  position: relative;
+  padding-left: 16px;
+}
+.avail-yes::before {
+  content: "";
+  position: absolute;
+  left: 7px;
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #15803d;
+  transform: translateY(-50%);
+  animation: pulseDot 2s ease-in-out infinite;
+}
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: .3; }
+}
 
-    .car-feats span {
-      font-size: 0.75rem;
-      color: var(--muted);
-    }
+.avail-few {
+  background: var(--primary-subtle);
+  color: var(--primary-dark);
+}
 
-    .car-card__price-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 14px;
-    }
+.car-specs {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin: 12px 0;
+}
 
-    .car-price {
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: 1.7rem;
-      color: var(--primary-dark);
-      letter-spacing: 0.01em;
-    }
+.car-specs span {
+  font-size: 0.7rem;
+  color: var(--muted);
+  background: var(--surface2);
+  padding: 4px 9px;
+  border-radius: 6px;
+  transition: background .2s ease, color .2s ease;
+}
+.car-card:hover .car-specs span {
+  background: var(--primary-subtle);
+  color: var(--primary-dark);
+}
 
-    .car-price-per {
-      font-size: 0.78rem;
-      color: var(--muted);
-    }
+.car-feats {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-bottom: 14px;
+}
 
-    .car-card__trust-row {
-      display: flex;
-      gap: 5px;
-      flex-wrap: wrap;
-      margin-bottom: 14px;
-    }
+.car-feats span {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
 
-    .car-card__trust-row span {
-      font-size: 0.68rem;
-      color: #15803d;
-      background: var(--success-bg);
-      padding: 3px 8px;
-      border-radius: 5px;
-    }
+.car-card__price-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
 
-    .car-card__actions {
-      display: flex;
-      gap: 8px;
-    }
+.car-price {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.7rem;
+  color: var(--primary-dark);
+  letter-spacing: 0.01em;
+  /* NEW: used as a count-up target — pair with the JS snippet below */
+  font-variant-numeric: tabular-nums;
+}
 
+.car-price-per {
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.car-card__trust-row {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.car-card__trust-row span {
+  font-size: 0.68rem;
+  color: #15803d;
+  background: var(--success-bg);
+  padding: 3px 8px;
+  border-radius: 5px;
+}
+
+.car-card__actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* NEW: ripple effect for whichever button gets class="btn-gold" or similar —
+   needs a tiny JS hook (see script snippet below) to append the span on click */
+.car-card__actions .btn {
+  position: relative;
+  overflow: hidden;
+  transition: transform .15s ease, box-shadow .2s ease;
+}
+.car-card__actions .btn:active {
+  transform: scale(.96);
+}
+.car-card__actions .btn:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,.55);
+  transform: scale(0);
+  animation: rippleAnim .55s ease-out forwards;
+  pointer-events: none;
+}
+@keyframes rippleAnim {
+  to { transform: scale(2.6); opacity: 0; }
+}
+
+/* NEW: respect people who've asked for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .car-card,
+  .car-card__img-wrap img,
+  .car-card__rating,
+  .badge-gold,
+  .avail-yes::before {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
     /* WHY */
     .why {
       padding: 100px 0;
