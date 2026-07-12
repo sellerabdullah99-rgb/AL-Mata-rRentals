@@ -1206,7 +1206,38 @@
       </div>
     </div>
   </section>
+  <!-- ══ FLEET PREVIEW SECOND ══ -->
+ <section class="fleet-preview">
+    <div class="fleet-preview__head">
+      <div>
+        <h2>Our most booked rides</h2>
+        <p>Swipe or use the arrows — driver included, insured, free to cancel.</p>
+      </div>
+    </div>
 
+    <div class="fleet-slider">
+      <button class="slider-nav prev" aria-label="Previous car">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M15 18l-6-6 6-6" />
+        </svg>
+      </button>
+
+      <div class="slider-viewport">
+        <div class="slider-track" id="fleetTrack"></div>
+      </div>
+
+      <button class="slider-nav next" aria-label="Next car">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9 18l6-6-6-6" />
+        </svg>
+      </button>
+
+      <div class="slider-dots" id="fleetDots"></div>
+      <div class="slider-progress">
+        <div class="slider-progress__bar" id="progressBar"></div>
+      </div>
+    </div>
+  </section>
   <!-- ══ WHY US ══ -->
   <section class="why" id="why">
     <div class="container">
@@ -1496,6 +1527,137 @@
       renderHomeFleet(cars);
       populateQuickBookSelect(cars);
     })();
+  </script>
+  <script>
+    function vehicleArt(kind) {
+      const stroke = "#15161B";
+      const paths = {
+        sedan: `<path d="M20 118C20 108 28 100 40 100L58 78C64 70 74 65 85 65L145 65C156 65 166 70 172 78L190 100C202 100 210 108 210 118L210 132C210 140 204 146 196 146L34 146C26 146 20 140 20 132Z" fill="#EDE6D6" stroke="${stroke}" stroke-width="2.4"/><path d="M62 100L74 76C78 71 84 68 90 68L140 68C146 68 152 71 156 76L168 100Z" fill="#DED2B4" stroke="${stroke}" stroke-width="2"/><circle cx="66" cy="146" r="17" fill="#15161B"/><circle cx="66" cy="146" r="7" fill="#EDE6D6"/><circle cx="176" cy="146" r="17" fill="#15161B"/><circle cx="176" cy="146" r="7" fill="#EDE6D6"/>`,
+        suv: `<path d="M16 122C16 110 26 100 40 100L52 74C57 66 67 60 79 60L155 60C167 60 176 66 181 74L192 100C206 100 216 110 216 122L216 136C216 144 210 150 202 150L30 150C22 150 16 144 16 136Z" fill="#E4DAC2" stroke="${stroke}" stroke-width="2.4"/><path d="M60 100L68 78C71 72 76 68 82 68L152 68C158 68 163 72 166 78L174 100Z" fill="#D3C5A0" stroke="${stroke}" stroke-width="2"/><circle cx="64" cy="150" r="19" fill="#15161B"/><circle cx="64" cy="150" r="8" fill="#E4DAC2"/><circle cx="178" cy="150" r="19" fill="#15161B"/><circle cx="178" cy="150" r="8" fill="#E4DAC2"/>`,
+        hatch: `<path d="M26 120C26 110 34 102 44 102L60 82C65 75 73 70 82 70L148 70C155 70 162 74 166 80L180 102C194 102 202 110 202 120L202 134C202 141 196 147 189 147L39 147C32 147 26 141 26 134Z" fill="#E9E0CB" stroke="${stroke}" stroke-width="2.4"/><path d="M66 102L76 84C79 79 84 76 89 76L145 76C150 76 154 79 157 84L166 102Z" fill="#D8CBA6" stroke="${stroke}" stroke-width="2"/><circle cx="70" cy="147" r="17" fill="#15161B"/><circle cx="70" cy="147" r="7" fill="#E9E0CB"/><circle cx="172" cy="147" r="17" fill="#15161B"/><circle cx="172" cy="147" r="7" fill="#E9E0CB"/>`,
+        van: `<path d="M18 126C18 112 30 100 46 100L46 82C46 74 53 68 61 68L188 68C198 68 206 76 206 86L206 126L18 126Z" fill="#EEE5D0" stroke="${stroke}" stroke-width="2.4"/><rect x="14" y="120" width="196" height="14" rx="4" fill="#EEE5D0" stroke="${stroke}" stroke-width="2"/><circle cx="60" cy="134" r="17" fill="#15161B"/><circle cx="60" cy="134" r="7" fill="#EEE5D0"/><circle cx="168" cy="134" r="17" fill="#15161B"/><circle cx="168" cy="134" r="7" fill="#EEE5D0"/>`
+      };
+      const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 230 170"><ellipse cx="115" cy="152" rx="90" ry="10" fill="#15161B" opacity=".08"/>${paths[kind]}</svg>`;
+      return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
+    }
+
+   function renderSlider(cars) {
+      const track = document.getElementById('fleetTrack');
+      track.innerHTML = cars.map(c => `
+      <div class="car-card">
+        ${c.badge ? `<div class="car-card__badge ${c.badgeClass}">${c.badge}</div>` : ''}
+        <div class="car-card__img-wrap">
+          <img src="${vehicleArt(c.kind)}" alt="${c.name}" loading="lazy" onload="this.classList.add('loaded')"/>
+          <div class="car-card__shine"></div>
+          <div class="car-card__rating">⭐ ${c.rating}</div>
+        </div>
+        <div class="car-card__body">
+          <div class="car-card__name">${c.name}</div>
+          <div class="car-card__type">${c.type}</div>
+          <span class="avail-badge ${c.availClass}">${c.avail}</span>
+          <div class="car-specs">${c.specs.map(s => `<span>${s}</span>`).join('')}</div>
+          <div class="car-feats">${c.feats.map(f => `<span>✓ ${f}</span>`).join('')}</div>
+          <div class="car-card__price-row">
+            <span><span class="car-price">PKR ${c.hourlyRate.toLocaleString()}</span><span class="car-price-per"> /hour</span></span>
+          </div>
+          <div class="car-card__trust-row"><span>Driver</span><span>Free cancel</span><span>Insured</span></div>
+          <div class="car-card__actions">
+            <a href="fleet.html" class="btn btn-ghost">Details</a>
+            <a href="fleet.html" class="btn btn-gold">Book</a>
+          </div>
+        </div>
+      </div>`).join('');
+    }
+
+    renderSlider(cars);
+
+    /* ===================== slider behaviour ===================== */
+    const track = document.getElementById('fleetTrack');
+    const prevBtn = document.querySelector('.slider-nav.prev');
+    const nextBtn = document.querySelector('.slider-nav.next');
+    const dotsWrap = document.getElementById('fleetDots');
+    const progressBar = document.getElementById('progressBar');
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function cardWidth() {
+      const card = track.querySelector('.car-card');
+      if (!card) return 300;
+      const style = getComputedStyle(track);
+      return card.getBoundingClientRect().width + parseFloat(style.gap || 24);
+    }
+
+    // build dots (one per card)
+    cars.forEach((_, i) => {
+      const b = document.createElement('button');
+      if (i === 0) b.classList.add('active');
+      b.setAttribute('aria-label', `Go to car ${i + 1}`);
+      b.addEventListener('click', () => {
+        track.scrollTo({ left: cardWidth() * i, behavior: 'smooth' });
+      });
+      dotsWrap.appendChild(b);
+    });
+
+    function updateActiveDot() {
+      const idx = Math.round(track.scrollLeft / cardWidth());
+      [...dotsWrap.children].forEach((d, i) => d.classList.toggle('active', i === idx));
+      prevBtn.disabled = track.scrollLeft <= 4;
+      nextBtn.disabled = track.scrollLeft >= track.scrollWidth - track.clientWidth - 4;
+    }
+    track.addEventListener('scroll', () => {
+      window.requestAnimationFrame(updateActiveDot);
+    });
+
+    prevBtn.addEventListener('click', () => track.scrollBy({ left: -cardWidth(), behavior: 'smooth' }));
+    nextBtn.addEventListener('click', () => track.scrollBy({ left: cardWidth(), behavior: 'smooth' }));
+
+    // click-and-drag scrolling on desktop
+    let isDown = false, startX = 0, startScroll = 0;
+    track.addEventListener('mousedown', e => {
+      isDown = true;
+      track.classList.add('dragging');
+      startX = e.pageX;
+      startScroll = track.scrollLeft;
+    });
+    window.addEventListener('mouseup', () => { isDown = false; track.classList.remove('dragging'); });
+    window.addEventListener('mousemove', e => {
+      if (!isDown) return;
+      track.scrollLeft = startScroll - (e.pageX - startX);
+    });
+
+    // autoplay with a visible progress bar, pauses on hover/focus
+    let autoplayTimer;
+    function startAutoplay() {
+      if (reduced) return;
+      progressBar.classList.remove('animate');
+      void progressBar.offsetWidth; // restart animation
+      progressBar.classList.add('animate');
+      clearTimeout(autoplayTimer);
+      autoplayTimer = setTimeout(() => {
+        const atEnd = track.scrollLeft >= track.scrollWidth - track.clientWidth - 4;
+        track.scrollTo({ left: atEnd ? 0 : track.scrollLeft + cardWidth(), behavior: 'smooth' });
+        startAutoplay();
+      }, 5000);
+    }
+    track.addEventListener('mouseenter', () => { clearTimeout(autoplayTimer); progressBar.classList.remove('animate'); });
+    track.addEventListener('mouseleave', startAutoplay);
+    startAutoplay();
+
+    // button ripple
+    document.addEventListener('click', e => {
+      const btn = e.target.closest('.btn-gold');
+      if (!btn) return;
+      const rect = btn.getBoundingClientRect();
+      const r = document.createElement('span');
+      r.className = 'ripple';
+      const size = Math.max(rect.width, rect.height);
+      r.style.width = r.style.height = size + 'px';
+      r.style.left = (e.clientX - rect.left - size / 2) + 'px';
+      r.style.top = (e.clientY - rect.top - size / 2) + 'px';
+      btn.appendChild(r);
+      setTimeout(() => r.remove(), 600);
+    });
+
+    window.addEventListener('resize', updateActiveDot);
   </script>
   <script src="js/global.js"></script>
 </body>
