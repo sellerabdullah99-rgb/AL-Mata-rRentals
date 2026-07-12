@@ -1077,6 +1077,7 @@
         flex-direction: column
       }
     }
+
     * {
       box-sizing: border-box;
     }
@@ -1670,7 +1671,7 @@
     <div class="container">
       <div class="hero__inner">
         <!-- LEFT -->
-         vdsfdgdhddbsgg
+        vdsfdgdhddbsgg
         <div data-aos>
           <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px;">
             <div class="hero__live"><span class="hero__live-dot"></span>Verified fleet, ready now</div>
@@ -1785,7 +1786,7 @@
     </div>
   </section>
   <!-- ══ FLEET PREVIEW SECOND ══ -->
- <section class="fleet-preview">
+  <section class="fleet-preview">
     <div class="fleet-preview__head">
       <div>
         <h2>Our most booked rides</h2>
@@ -2107,6 +2108,18 @@
     })();
   </script>
   <script>
+    /* ============================================================
+   FLEET SLIDER — full JS
+   Call initFleetSlider(cars) once you have your real data,
+   from a fetch, an import, or a global variable — doesn't matter.
+   Required markup on the page (from fleet_slider.html):
+     <div class="slider-track" id="fleetTrack"></div>
+     <button class="slider-nav prev">...</button>
+     <button class="slider-nav next">...</button>
+     <div class="slider-dots" id="fleetDots"></div>
+     <div class="slider-progress"><div class="slider-progress__bar" id="progressBar"></div></div>
+   ============================================================ */
+
     function vehicleArt(kind) {
       const stroke = "#15161B";
       const paths = {
@@ -2115,127 +2128,186 @@
         hatch: `<path d="M26 120C26 110 34 102 44 102L60 82C65 75 73 70 82 70L148 70C155 70 162 74 166 80L180 102C194 102 202 110 202 120L202 134C202 141 196 147 189 147L39 147C32 147 26 141 26 134Z" fill="#E9E0CB" stroke="${stroke}" stroke-width="2.4"/><path d="M66 102L76 84C79 79 84 76 89 76L145 76C150 76 154 79 157 84L166 102Z" fill="#D8CBA6" stroke="${stroke}" stroke-width="2"/><circle cx="70" cy="147" r="17" fill="#15161B"/><circle cx="70" cy="147" r="7" fill="#E9E0CB"/><circle cx="172" cy="147" r="17" fill="#15161B"/><circle cx="172" cy="147" r="7" fill="#E9E0CB"/>`,
         van: `<path d="M18 126C18 112 30 100 46 100L46 82C46 74 53 68 61 68L188 68C198 68 206 76 206 86L206 126L18 126Z" fill="#EEE5D0" stroke="${stroke}" stroke-width="2.4"/><rect x="14" y="120" width="196" height="14" rx="4" fill="#EEE5D0" stroke="${stroke}" stroke-width="2"/><circle cx="60" cy="134" r="17" fill="#15161B"/><circle cx="60" cy="134" r="7" fill="#EEE5D0"/><circle cx="168" cy="134" r="17" fill="#15161B"/><circle cx="168" cy="134" r="7" fill="#EEE5D0"/>`
       };
-      const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 230 170"><ellipse cx="115" cy="152" rx="90" ry="10" fill="#15161B" opacity=".08"/>${paths[kind]}</svg>`;
+      const shape = paths[kind] || paths.sedan;
+      const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 230 170"><ellipse cx="115" cy="152" rx="90" ry="10" fill="#15161B" opacity=".08"/>${shape}</svg>`;
       return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
     }
 
-   function renderSlider(cars) {
+    function renderSlider(cars) {
       const track = document.getElementById('fleetTrack');
+      if (!track) {
+        console.error('initFleetSlider: #fleetTrack not found in the page.');
+        return;
+      }
       track.innerHTML = cars.map(c => `
-      <div class="car-card">
-        ${c.badge ? `<div class="car-card__badge ${c.badgeClass}">${c.badge}</div>` : ''}
-        <div class="car-card__img-wrap">
-          <img src="${vehicleArt(c.kind)}" alt="${c.name}" loading="lazy" onload="this.classList.add('loaded')"/>
-          <div class="car-card__shine"></div>
-          <div class="car-card__rating">⭐ ${c.rating}</div>
+    <div class="car-card">
+      ${c.badge ? `<div class="car-card__badge ${c.badgeClass || 'badge-dark'}">${c.badge}</div>` : ''}
+      <div class="car-card__img-wrap">
+        <img src="${c.image || vehicleArt(c.kind)}" alt="${c.name}" loading="lazy" onload="this.classList.add('loaded')"/>
+        <div class="car-card__shine"></div>
+        <div class="car-card__rating">⭐ ${c.rating}</div>
+      </div>
+      <div class="car-card__body">
+        <div class="car-card__name">${c.name}</div>
+        <div class="car-card__type">${c.type}</div>
+        <span class="avail-badge ${c.availClass || 'avail-yes'}">${c.avail}</span>
+        <div class="car-specs">${(c.specs || []).map(s => `<span>${s}</span>`).join('')}</div>
+        <div class="car-feats">${(c.feats || []).map(f => `<span>✓ ${f}</span>`).join('')}</div>
+        <div class="car-card__price-row">
+          <span><span class="car-price">PKR ${Number(c.hourlyRate).toLocaleString()}</span><span class="car-price-per"> /hour</span></span>
         </div>
-        <div class="car-card__body">
-          <div class="car-card__name">${c.name}</div>
-          <div class="car-card__type">${c.type}</div>
-          <span class="avail-badge ${c.availClass}">${c.avail}</span>
-          <div class="car-specs">${c.specs.map(s => `<span>${s}</span>`).join('')}</div>
-          <div class="car-feats">${c.feats.map(f => `<span>✓ ${f}</span>`).join('')}</div>
-          <div class="car-card__price-row">
-            <span><span class="car-price">PKR ${c.hourlyRate.toLocaleString()}</span><span class="car-price-per"> /hour</span></span>
-          </div>
-          <div class="car-card__trust-row"><span>Driver</span><span>Free cancel</span><span>Insured</span></div>
-          <div class="car-card__actions">
-            <a href="fleet.html" class="btn btn-ghost">Details</a>
-            <a href="fleet.html" class="btn btn-gold">Book</a>
-          </div>
+        <div class="car-card__trust-row"><span>Driver</span><span>Free cancel</span><span>Insured</span></div>
+        <div class="car-card__actions">
+          <a href="fleet.html" class="btn btn-ghost">Details</a>
+          <a href="fleet.html" class="btn btn-gold">Book</a>
         </div>
-      </div>`).join('');
+      </div>
+    </div>`).join('');
     }
 
-    renderSlider(cars);
+    /**
+     * Renders the cards and wires up all slider behaviour: arrows, dots,
+     * drag-to-scroll, autoplay with progress bar, and button ripple.
+     * Safe to call more than once (e.g. if your data reloads) — it re-binds
+     * against the current DOM each time.
+     *
+     * @param {Array<Object>} cars - each item can include:
+     *   name, type, rating, avail, availClass ('avail-yes'|'avail-few'),
+     *   badge, badgeClass ('badge-gold'|'badge-dark'),
+     *   image (real photo URL — falls back to a drawn icon via `kind` if omitted),
+     *   kind ('sedan'|'suv'|'hatch'|'van'), specs (string[]), feats (string[]),
+     *   hourlyRate (number)
+     */
+    function initFleetSlider(cars) {
+      if (!Array.isArray(cars) || cars.length === 0) {
+        console.warn('initFleetSlider: no cars to render.');
+        return;
+      }
 
-    /* ===================== slider behaviour ===================== */
-    const track = document.getElementById('fleetTrack');
-    const prevBtn = document.querySelector('.slider-nav.prev');
-    const nextBtn = document.querySelector('.slider-nav.next');
-    const dotsWrap = document.getElementById('fleetDots');
-    const progressBar = document.getElementById('progressBar');
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      renderSlider(cars);
 
-    function cardWidth() {
-      const card = track.querySelector('.car-card');
-      if (!card) return 300;
-      const style = getComputedStyle(track);
-      return card.getBoundingClientRect().width + parseFloat(style.gap || 24);
-    }
+      const track = document.getElementById('fleetTrack');
+      const prevBtn = document.querySelector('.slider-nav.prev');
+      const nextBtn = document.querySelector('.slider-nav.next');
+      const dotsWrap = document.getElementById('fleetDots');
+      const progressBar = document.getElementById('progressBar');
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    // build dots (one per card)
-    cars.forEach((_, i) => {
-      const b = document.createElement('button');
-      if (i === 0) b.classList.add('active');
-      b.setAttribute('aria-label', `Go to car ${i + 1}`);
-      b.addEventListener('click', () => {
-        track.scrollTo({ left: cardWidth() * i, behavior: 'smooth' });
+      if (!track) return;
+
+      function cardWidth() {
+        const card = track.querySelector('.car-card');
+        if (!card) return 300;
+        const style = getComputedStyle(track);
+        return card.getBoundingClientRect().width + parseFloat(style.gap || 24);
+      }
+
+      // rebuild dots fresh each call
+      if (dotsWrap) {
+        dotsWrap.innerHTML = '';
+        cars.forEach((_, i) => {
+          const b = document.createElement('button');
+          if (i === 0) b.classList.add('active');
+          b.setAttribute('aria-label', `Go to car ${i + 1}`);
+          b.addEventListener('click', () => {
+            track.scrollTo({ left: cardWidth() * i, behavior: 'smooth' });
+          });
+          dotsWrap.appendChild(b);
+        });
+      }
+
+      function updateActiveDot() {
+        const idx = Math.round(track.scrollLeft / cardWidth());
+        if (dotsWrap) {
+          [...dotsWrap.children].forEach((d, i) => d.classList.toggle('active', i === idx));
+        }
+        if (prevBtn) prevBtn.disabled = track.scrollLeft <= 4;
+        if (nextBtn) nextBtn.disabled = track.scrollLeft >= track.scrollWidth - track.clientWidth - 4;
+      }
+      track.addEventListener('scroll', () => window.requestAnimationFrame(updateActiveDot));
+
+      if (prevBtn) prevBtn.addEventListener('click', () => track.scrollBy({ left: -cardWidth(), behavior: 'smooth' }));
+      if (nextBtn) nextBtn.addEventListener('click', () => track.scrollBy({ left: cardWidth(), behavior: 'smooth' }));
+
+      // click-and-drag scrolling on desktop
+      let isDown = false, startX = 0, startScroll = 0;
+      track.addEventListener('mousedown', e => {
+        isDown = true;
+        track.classList.add('dragging');
+        startX = e.pageX;
+        startScroll = track.scrollLeft;
       });
-      dotsWrap.appendChild(b);
-    });
+      window.addEventListener('mouseup', () => { isDown = false; track.classList.remove('dragging'); });
+      window.addEventListener('mousemove', e => {
+        if (!isDown) return;
+        track.scrollLeft = startScroll - (e.pageX - startX);
+      });
 
-    function updateActiveDot() {
-      const idx = Math.round(track.scrollLeft / cardWidth());
-      [...dotsWrap.children].forEach((d, i) => d.classList.toggle('active', i === idx));
-      prevBtn.disabled = track.scrollLeft <= 4;
-      nextBtn.disabled = track.scrollLeft >= track.scrollWidth - track.clientWidth - 4;
+      // autoplay with a visible progress bar, pauses on hover
+      let autoplayTimer;
+      function startAutoplay() {
+        if (reduced || !progressBar) return;
+        progressBar.classList.remove('animate');
+        void progressBar.offsetWidth; // restart animation
+        progressBar.classList.add('animate');
+        clearTimeout(autoplayTimer);
+        autoplayTimer = setTimeout(() => {
+          const atEnd = track.scrollLeft >= track.scrollWidth - track.clientWidth - 4;
+          track.scrollTo({ left: atEnd ? 0 : track.scrollLeft + cardWidth(), behavior: 'smooth' });
+          startAutoplay();
+        }, 5000);
+      }
+      track.addEventListener('mouseenter', () => {
+        clearTimeout(autoplayTimer);
+        if (progressBar) progressBar.classList.remove('animate');
+      });
+      track.addEventListener('mouseleave', startAutoplay);
+      startAutoplay();
+
+      // button ripple (delegated, so it works for freshly-rendered cards too)
+      document.addEventListener('click', function rippleHandler(e) {
+        const btn = e.target.closest('.btn-gold');
+        if (!btn) return;
+        const rect = btn.getBoundingClientRect();
+        const r = document.createElement('span');
+        r.className = 'ripple';
+        const size = Math.max(rect.width, rect.height);
+        r.style.width = r.style.height = size + 'px';
+        r.style.left = (e.clientX - rect.left - size / 2) + 'px';
+        r.style.top = (e.clientY - rect.top - size / 2) + 'px';
+        btn.appendChild(r);
+        setTimeout(() => r.remove(), 600);
+      });
+
+      window.addEventListener('resize', updateActiveDot);
     }
-    track.addEventListener('scroll', () => {
-      window.requestAnimationFrame(updateActiveDot);
-    });
 
-    prevBtn.addEventListener('click', () => track.scrollBy({ left: -cardWidth(), behavior: 'smooth' }));
-    nextBtn.addEventListener('click', () => track.scrollBy({ left: cardWidth(), behavior: 'smooth' }));
+    // expose globally so you can call it from anywhere —
+    // a <script type="module">, an inline <script>, or your other data file
+    window.initFleetSlider = initFleetSlider;
 
-    // click-and-drag scrolling on desktop
-    let isDown = false, startX = 0, startScroll = 0;
-    track.addEventListener('mousedown', e => {
-      isDown = true;
-      track.classList.add('dragging');
-      startX = e.pageX;
-      startScroll = track.scrollLeft;
-    });
-    window.addEventListener('mouseup', () => { isDown = false; track.classList.remove('dragging'); });
-    window.addEventListener('mousemove', e => {
-      if (!isDown) return;
-      track.scrollLeft = startScroll - (e.pageX - startX);
-    });
+    /* ============================================================
+       HOOK UP YOUR REAL DATA — uncomment whichever matches your setup
+       ============================================================ */
 
-    // autoplay with a visible progress bar, pauses on hover/focus
-    let autoplayTimer;
-    function startAutoplay() {
-      if (reduced) return;
-      progressBar.classList.remove('animate');
-      void progressBar.offsetWidth; // restart animation
-      progressBar.classList.add('animate');
-      clearTimeout(autoplayTimer);
-      autoplayTimer = setTimeout(() => {
-        const atEnd = track.scrollLeft >= track.scrollWidth - track.clientWidth - 4;
-        track.scrollTo({ left: atEnd ? 0 : track.scrollLeft + cardWidth(), behavior: 'smooth' });
-        startAutoplay();
-      }, 5000);
-    }
-    track.addEventListener('mouseenter', () => { clearTimeout(autoplayTimer); progressBar.classList.remove('animate'); });
-    track.addEventListener('mouseleave', startAutoplay);
-    startAutoplay();
+    // --- Option A: fetch from an API ---
+    // async function loadFleet() {
+    //   try {
+    //     const res = await fetch('/api/cars');
+    //     const data = await res.json();
+    //     initFleetSlider(data);
+    //   } catch (err) {
+    //     console.error('Failed to load fleet:', err);
+    //   }
+    // }
+    // loadFleet();
 
-    // button ripple
-    document.addEventListener('click', e => {
-      const btn = e.target.closest('.btn-gold');
-      if (!btn) return;
-      const rect = btn.getBoundingClientRect();
-      const r = document.createElement('span');
-      r.className = 'ripple';
-      const size = Math.max(rect.width, rect.height);
-      r.style.width = r.style.height = size + 'px';
-      r.style.left = (e.clientX - rect.left - size / 2) + 'px';
-      r.style.top = (e.clientY - rect.top - size / 2) + 'px';
-      btn.appendChild(r);
-      setTimeout(() => r.remove(), 600);
-    });
+    // --- Option B: ES module import from your data file ---
+    // import { cars } from './data.js';
+    // initFleetSlider(cars);
 
-    window.addEventListener('resize', updateActiveDot);
+    // --- Option C: another script sets window.carsData then fires an event ---
+    // document.addEventListener('carsReady', () => initFleetSlider(window.carsData));
   </script>
   <script src="js/global.js"></script>
 </body>
