@@ -2290,23 +2290,11 @@
        HOOK UP YOUR REAL DATA — uncomment whichever matches your setup
        ============================================================ */
 
-    // --- Option A: fetch from an API ---
-    // async function loadFleet() {
-    //   try {
-    //     const res = await fetch('/api/cars');
-    //     const data = await res.json();
-    //     initFleetSlider(data);
-    //   } catch (err) {
-    //     console.error('Failed to load fleet:', err);
-    //   }
-    // }
-    // loadFleet();
+   
+import { cars } from './cars-data.js';
+initFleetSlider(cars);
 
-    import { cars } from './car-data.js';
-    initFleetSlider(cars);
-
-    // --- Option C: another script sets window.carsData then fires an event ---
-    // document.addEventListener('carsReady', () => initFleetSlider(window.carsData));
+    
   </script>
   <script src="js/global.js"></script>
 </body>
