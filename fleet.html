@@ -547,7 +547,7 @@
     <div class="container page-hero__content">
       <div class="page-hero__breadcrumb"><a href="index.html">Home</a><span>/</span><span>Fleet</span></div>
       <h1>Our <span>Fleet</span></h1>
-      <p>8 verified cars across 4 categories — economy, sedan, SUV & luxury. All delivered free to your doorstep in
+      <p>14 verified cars across 4 categories — economy, sedan, SUV & luxury. All delivered free to your doorstep in
         Karachi.</p>
     </div>
   </section>
@@ -761,10 +761,10 @@
     function moveModalSlide(dir) { modalIdx = (modalIdx + dir + modalImages.length) % modalImages.length; updateModalGallery(); }
     function goModalSlide(i) { modalIdx = i; updateModalGallery(); }
 
-    function waBook(name, price) {
-      const msg = `Assalamualaikum! I want to book *${name}* (PKR ${Number(price).toLocaleString()}/day) from *AL-Matar Rentals*, Gulshan Iqbal Karachi. Please confirm availability!`;
-      window.open(`https://wa.me/923412372227?text=${encodeURIComponent(msg)}`, '_blank');
-    }
+    // NOTE: the old duplicate `waBook(name, price)` function that lived here has
+    // been removed — it was dead code (never called) and its name collided with
+    // the real `waBook(carName, hourlyRate)` function in js/global.js, which is
+    // what actually powers booking elsewhere on the site.
 
     function updateCardPackagePrice(sel) {
       // No DOM price element needs live update right now since price shows inside the
