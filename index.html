@@ -2302,9 +2302,8 @@
     // }
     // loadFleet();
 
-    // --- Option B: ES module import from your data file ---
-    // import { cars } from './data.js';
-    // initFleetSlider(cars);
+    import { cars } from './car-data.js';
+    initFleetSlider(cars);
 
     // --- Option C: another script sets window.carsData then fires an event ---
     // document.addEventListener('carsReady', () => initFleetSlider(window.carsData));
