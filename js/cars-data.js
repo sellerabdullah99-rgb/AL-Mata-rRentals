@@ -390,5 +390,3 @@ const CARS_DATA = [
     hourlyRate: 550,
   },
 ];
-
-export default cars;
