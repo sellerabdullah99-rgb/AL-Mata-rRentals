@@ -160,7 +160,7 @@ const CARS_DATA = [
     "id": 6,
     "name": "Toyota Yaris sedan",
     "type": "SUV",
-    "image":"/images/car6/car.jpeg",
+    "image": "/images/car6/car.jpeg",
     "rating": 5.0,
     "avail": "Available",
     "availClass": "avail-yes",
@@ -216,7 +216,7 @@ const CARS_DATA = [
     "desc": "Pure luxury for VIP occasions, weddings, and business executives. Sunroof, premium leather, chauffeur-driven for maximum comfort.",
     "hourlyRate": 1900
   },
-   {
+  {
     id: 8,
     name: "Toyota Corolla",
     type: "Sedan",
@@ -390,5 +390,5 @@ const CARS_DATA = [
     hourlyRate: 550,
   },
 ];
- 
+
 export default cars;
