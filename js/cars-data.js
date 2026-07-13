@@ -200,9 +200,9 @@ const CARS_DATA = [
     "id": 8,
     "name": "Toyota Corolla (Facelift)",
     "type": "Sedan",
-    "image": "https://drive.google.com/uc?export=view&id=1eAXIvo8eDDm_7-NhvfeqLiU5rR3v2DNf",
+    "image": "./images/car8/corolla 1.jpg",
     "images": [
-      "https://drive.google.com/uc?export=view&id=1eAXIvo8eDDm_7-NhvfeqLiU5rR3v2DNf"
+      "./images/car8/corolla 1.jpg"
     ],
     "rating": 4.5,
     "avail": "Available",
