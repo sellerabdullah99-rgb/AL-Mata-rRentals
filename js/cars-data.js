@@ -280,7 +280,7 @@ const CARS_DATA = [
       "./images/car11/Toyota Yaris (3).jpg",
       "./images/car11/Toyota Yaris (4).jpg",
       "./images/car11/Toyota Yaris (5).jpg",
-      
+
     ],
     "rating": 4.6,
     "avail": "Available",
@@ -301,11 +301,10 @@ const CARS_DATA = [
     "id": 12,
     "name": "Honda BR-V (Premium)",
     "type": "Luxury",
-    "image": "https://drive.google.com/uc?export=view&id=1bL41wbQMKv8PfkzRRM2woSx7lceFJO-q",
+    "image": "./images/car12/Honda BRV (3).jpg",
     "images": [
-      "https://drive.google.com/uc?export=view&id=1bL41wbQMKv8PfkzRRM2woSx7lceFJO-q",
-      "https://drive.google.com/uc?export=view&id=1PM-2rhwEIhVnBfzgpvDIGHZaFK-XSn9H",
-      "https://drive.google.com/uc?export=view&id=1q97ho-g14MhHqP2oDQSKchvcbAP_6eKr"
+      "./images/car12/Honda BRV (2).jpg", 
+      "./images/car12/Honda BRV (1).jpg", 
     ],
     "rating": 5,
     "avail": "Available",
