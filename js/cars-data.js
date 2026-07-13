@@ -202,7 +202,7 @@ const CARS_DATA = [
     "type": "Sedan",
     "image": "./images/car8/corolla 1.jpg",
     "images": [
-      "./images/car8/corolla 1.jpg"
+      "./images/car8/corolla 2.jpg"
     ],
     "rating": 4.5,
     "avail": "Available",
