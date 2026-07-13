@@ -274,13 +274,13 @@ const CARS_DATA = [
     "id": 11,
     "name": "Toyota Yaris",
     "type": "Sedan",
-    "image": "https://drive.google.com/uc?export=view&id=1hg03d86J9Y6UP5zN0_hIgqhCxlqVvCWJ",
+    "image": "./images/car11/Toyota Yaris 1.jpg",
     "images": [
-      "https://drive.google.com/uc?export=view&id=1hg03d86J9Y6UP5zN0_hIgqhCxlqVvCWJ",
-      "https://drive.google.com/uc?export=view&id=15NTBunHSN90PZVjoIeueuXFAG7W5g5NS",
-      "https://drive.google.com/uc?export=view&id=1JYI6q2OvtBouZLljSqwodSj4Gj_2w34M",
-      "https://drive.google.com/uc?export=view&id=1durz6kZUdkQ2kh37taolOmprY8QTeheV",
-      "https://drive.google.com/uc?export=view&id=1AXs4NDxYsvv008UCDOKj26ztiUET7uxZ"
+      "./images/car11/Toyota Yaris (2).jpg",
+      "./images/car11/Toyota Yaris (3).jpg",
+      "./images/car11/Toyota Yaris (4).jpg",
+      "./images/car11/Toyota Yaris (5).jpg",
+      
     ],
     "rating": 4.6,
     "avail": "Available",
