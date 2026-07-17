@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Fleet Admin — AL-Matar Rentals</title>
+<meta name="robots" content="noindex, nofollow"/>
+<style>
+  :root{--g:#B8962E;--bg:#F8F7F4;--surf:#fff;--bd:#e5e2da;--txt:#111}
+  *{box-sizing:border-box}
+  body{font-family:system-ui,-apple-system,Segoe UI,sans-serif;background:var(--bg);color:var(--txt);margin:0;padding:0}
+  .wrap{max-width:1000px;margin:0 auto;padding:32px 20px}
+  h1{font-size:1.5rem;margin:0 0 4px}
+  .sub{color:#888;font-size:.85rem;margin-bottom:24px}
+  .card{background:var(--surf);border:1px solid var(--bd);border-radius:12px;padding:24px;margin-bottom:24px;box-shadow:0 4px 16px rgba(0,0,0,.05)}
+  label{display:block;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#888;margin-bottom:5px}
+  input,select,textarea{width:100%;padding:10px 12px;border:1px solid var(--bd);border-radius:8px;font-size:.9rem;margin-bottom:14px;font-family:inherit}
+  textarea{min-height:60px}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+  button{background:var(--g);color:#fff;border:none;padding:11px 22px;border-radius:8px;font-size:.88rem;font-weight:600;cursor:pointer}
+  button.secondary{background:#eee;color:#333}
+  button.danger{background:#c0392b}
+  button:disabled{opacity:.5;cursor:not-allowed}
+  table{width:100%;border-collapse:collapse;font-size:.85rem}
+  th,td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--bd)}
+  th{color:#888;font-weight:700;text-transform:uppercase;font-size:.7rem;letter-spacing:.05em}
+  .actions button{padding:6px 12px;font-size:.78rem;margin-right:6px}
+  #loginBox{max-width:360px;margin:80px auto}
+  #appBox{display:none}
+  .topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+  .hint{font-size:.75rem;color:#888;margin-top:-8px;margin-bottom:14px}
+  .msg{padding:10px 14px;border-radius:8px;font-size:.85rem;margin-bottom:16px}
+  .msg.error{background:#fdecea;color:#c0392b}
+  .msg.success{background:#e8f7ee;color:#15803d}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- LOGIN -->
+  <div id="loginBox" class="card">
+    <h1>Fleet Admin Login</h1>
+    <p class="sub">AL-Matar Rentals — content dashboard</p>
+    <div id="loginMsg"></div>
+    <label>Email</label>
+    <input type="email" id="loginEmail" placeholder="you@almatar.pk"/>
+    <label>Password</label>
+    <input type="password" id="loginPassword" placeholder="••••••••"/>
+    <button id="loginBtn" style="width:100%">Log In</button>
+  </div>
+
+  <!-- APP -->
+  <div id="appBox">
+    <div class="topbar">
+      <div>
+        <h1>Fleet Admin</h1>
+        <p class="sub">Add, edit, or remove cars. Changes appear on the live site on the next page load.</p>
+      </div>
+      <button class="secondary" id="logoutBtn">Log Out</button>
+    </div>
+
+    <div id="formMsg"></div>
+
+    <div class="card">
+      <h2 id="formTitle" style="margin:0 0 16px;font-size:1.1rem;">Add a New Car</h2>
+      <input type="hidden" id="carId"/>
+      <div class="row2">
+        <div><label>Name</label><input id="fName" placeholder="Toyota Corolla"/></div>
+        <div><label>Type</label><input id="fType" placeholder="Sedan"/></div>
+      </div>
+      <div class="row3">
+        <div><label>Hourly Rate (PKR)</label><input id="fRate" type="number" placeholder="550"/></div>
+        <div><label>Rating</label><input id="fRating" type="number" step="0.1" placeholder="4.9"/></div>
+        <div><label>Popularity (0-10)</label><input id="fPopular" type="number" placeholder="8"/></div>
+      </div>
+      <div class="row2">
+        <div><label>Availability text</label><input id="fAvail" placeholder="Available"/></div>
+        <div>
+          <label>Availability style</label>
+          <select id="fAvailClass">
+            <option value="avail-yes">Available (green)</option>
+            <option value="avail-few">Few left (gold)</option>
+          </select>
+        </div>
+      </div>
+      <div class="row2">
+        <div><label>Badge text (optional)</label><input id="fBadge" placeholder="Most Popular"/></div>
+        <div><label>Badge style</label>
+          <select id="fBadgeClass">
+            <option value="">None</option>
+            <option value="badge-gold">Gold</option>
+            <option value="badge-black">Dark</option>
+          </select>
+        </div>
+      </div>
+      <div class="row3">
+        <div><label>Fuel</label><input id="fFuel" placeholder="Petrol"/></div>
+        <div><label>Seats</label><input id="fSeats" placeholder="5 Seats"/></div>
+        <div><label>AC</label><input id="fAc" placeholder="AC"/></div>
+      </div>
+      <label>Music / Audio</label><input id="fMusic" placeholder="Aux / BT"/>
+      <label>Categories (comma separated)</label>
+      <input id="fCat" placeholder="all, sedan, driver"/>
+      <p class="hint">These control which filter tabs on the Fleet page show this car.</p>
+      <label>Features (comma separated)</label>
+      <input id="fFeats" placeholder="Driver included, City commutes, Free cancellation"/>
+      <label>Image URLs (comma separated)</label>
+      <input id="fImage" placeholder="https://.../car1.jpg, https://.../car2.jpg"/>
+      <label>Description</label>
+      <textarea id="fDesc" placeholder="Short description shown in the car details popup"></textarea>
+
+      <button id="saveBtn">Save Car</button>
+      <button class="secondary" id="cancelEditBtn" style="display:none">Cancel Edit</button>
+    </div>
+
+    <div class="card">
+      <h2 style="margin:0 0 16px;font-size:1.1rem;">Current Fleet</h2>
+      <table>
+        <thead><tr><th>ID</th><th>Name</th><th>Type</th><th>Rate/hr</th><th>Avail</th><th></th></tr></thead>
+        <tbody id="carsTableBody"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>
