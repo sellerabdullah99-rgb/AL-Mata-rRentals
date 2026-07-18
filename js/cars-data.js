@@ -13,6 +13,7 @@
 //              where card thumbnails broke for cars that only had an array.
 // ============================================
 
+
 const CARS_DATA = [
   {
     "id": 1,
