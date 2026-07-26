@@ -27,7 +27,8 @@ function rowToCarObject(row) {
     id: row.id,
     name: row.name,
     type: row.type,
-    image: row.image,               // array, same as before
+    image: Array.isArray(row.image) ? row.image[0] : row.image,  // ✅ sirf first image
+    images: row.image, // agar future mein gallery/multiple images chahiye ho to poora array yahan rakh lo
     rating: row.rating,
     avail: row.avail,
     availClass: row.avail_class,
