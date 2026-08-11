@@ -343,6 +343,43 @@
 
         <button id="saveBtn">Save Car</button>
         <button class="secondary" id="cancelEditBtn" style="display:none">Cancel Edit</button>
+        <!-- INVOICE MODAL -->
+<div id="invoiceOverlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:999;align-items:center;justify-content:center;padding:20px;">
+  <div class="card" style="max-width:480px;width:100%;max-height:90vh;overflow:auto;margin:0;">
+    <h2 style="margin:0 0 4px;font-size:1.1rem;">Generate Invoice</h2>
+    <p class="sub" id="invCarName" style="margin-bottom:18px;"></p>
+
+    <div class="row2">
+      <div><label>Customer Name</label><input id="invCustomerName" placeholder="Customer name" /></div>
+      <div><label>Customer Phone</label><input id="invCustomerPhone" placeholder="03xx-xxxxxxx" /></div>
+    </div>
+
+    <label>Pickup Location (map par tap/click karke select karein)</label>
+    <div id="invMap" style="height:220px;border-radius:8px;margin-bottom:8px;border:1px solid var(--bd);"></div>
+    <input id="invLocation" placeholder="Selected address yahan aayegi" readonly style="background:#f7f6f2;" />
+    <input type="hidden" id="invLat" />
+    <input type="hidden" id="invLng" />
+
+    <div class="row2">
+      <div><label>Rental Start</label><input id="invStart" type="datetime-local" /></div>
+      <div><label>Rental Hours</label><input id="invHours" type="number" placeholder="e.g. 6" /></div>
+    </div>
+
+    <label>Car Owner WhatsApp Number (for notifying)</label>
+    <input id="invOwnerPhone" placeholder="03xx-xxxxxxx" />
+
+    <label>Notes (optional)</label>
+    <textarea id="invNotes" placeholder="Any extra details"></textarea>
+
+    <div id="invTotalBox" style="background:#f7f6f2;border:1px solid var(--bd);border-radius:8px;padding:12px 14px;margin-bottom:14px;font-size:.9rem;font-weight:600;"></div>
+
+    <div style="display:flex;gap:10px;flex-wrap:wrap;">
+      <button id="invGenerateBtn">Generate &amp; Print Invoice</button>
+      <button id="invWhatsAppBtn" style="background:#25D366;">Notify Owner (WhatsApp)</button>
+      <button class="secondary" id="invCloseBtn">Close</button>
+    </div>
+  </div>
+</div>
       </div>
 
       <div class="card">
