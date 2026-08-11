@@ -140,6 +140,8 @@ async function loadCarsTable() {
       <td class="actions">
         <button class="secondary" onclick="editCar(${c.id})">Edit</button>
         <button class="danger" onclick="deleteCar(${c.id})">Delete</button>
+        <button onclick="openInvoice(${c.id})">Invoice</button>
+
       </td>
     </tr>
   `).join('');
