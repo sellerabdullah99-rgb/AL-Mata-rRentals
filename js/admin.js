@@ -140,6 +140,8 @@ async function loadCarsTable() {
       <td class="actions">
         <button class="secondary" onclick="editCar(${c.id})">Edit</button>
         <button class="danger" onclick="deleteCar(${c.id})">Delete</button>
+        <button onclick="openInvoice(${c.id})">Invoice</button>
+
       </td>
     </tr>
   `).join('');
@@ -320,3 +322,171 @@ async function migrateLocalImages() {
 document.getElementById('migrateImagesBtn').addEventListener('click', migrateLocalImages);
 
 checkSession();
+// ---------- INVOICE ----------
+
+let _invoiceCarId = null;
+let _invMap = null;
+let _invMarker = null;
+
+function openInvoice(id) {
+  const c = window._carsCache.find(x => x.id === id);
+  if (!c) return;
+  _invoiceCarId = id;
+
+  document.getElementById('invCarName').textContent =
+    `${c.name} — ${c.type || ''} — PKR ${Number(c.hourly_rate).toLocaleString()}/hr`;
+
+  document.getElementById('invCustomerName').value = '';
+  document.getElementById('invCustomerPhone').value = '';
+  document.getElementById('invLocation').value = '';
+  document.getElementById('invLat').value = '';
+  document.getElementById('invLng').value = '';
+  document.getElementById('invStart').value = '';
+  document.getElementById('invHours').value = '';
+  document.getElementById('invOwnerPhone').value = '';
+  document.getElementById('invNotes').value = '';
+  document.getElementById('invTotalBox').textContent = '';
+
+  document.getElementById('invoiceOverlay').style.display = 'flex';
+
+  // map needs the container to be visible before it can size itself correctly
+  setTimeout(initInvoiceMap, 100);
+}
+
+function initInvoiceMap() {
+  if (_invMarker) { _invMarker.remove(); _invMarker = null; }
+
+  if (!_invMap) {
+    // Default center: Lahore — change lat/lng below if your base city is different
+    _invMap = L.map('invMap').setView([31.5204, 74.3587], 12);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors',
+      maxZoom: 19
+    }).addTo(_invMap);
+
+    _invMap.on('click', async (e) => {
+      const { lat, lng } = e.latlng;
+      placeInvoiceMarker(lat, lng);
+      await reverseGeocode(lat, lng);
+    });
+  }
+
+  // fix map sizing when it was rendered while hidden
+  _invMap.invalidateSize();
+}
+
+function placeInvoiceMarker(lat, lng) {
+  if (_invMarker) _invMarker.setLatLng([lat, lng]);
+  else _invMarker = L.marker([lat, lng]).addTo(_invMap);
+  document.getElementById('invLat').value = lat;
+  document.getElementById('invLng').value = lng;
+}
+
+async function reverseGeocode(lat, lng) {
+  const locInput = document.getElementById('invLocation');
+  locInput.value = 'Looking up address...';
+  try {
+    const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`);
+    const data = await res.json();
+    locInput.value = data.display_name || `${lat.toFixed(5)}, ${lng.toFixed(5)}`;
+  } catch (err) {
+    locInput.value = `${lat.toFixed(5)}, ${lng.toFixed(5)}`; // fallback: raw coordinates
+  }
+}
+
+function closeInvoice() {
+  document.getElementById('invoiceOverlay').style.display = 'none';
+  _invoiceCarId = null;
+}
+
+function calcInvoiceTotal() {
+  const c = window._carsCache.find(x => x.id === _invoiceCarId);
+  const hours = parseFloat(document.getElementById('invHours').value) || 0;
+  const total = (c ? Number(c.hourly_rate) : 0) * hours;
+  document.getElementById('invTotalBox').textContent =
+    hours ? `Total: PKR ${total.toLocaleString()} (${hours} hrs)` : '';
+  return total;
+}
+
+document.getElementById('invHours').addEventListener('input', calcInvoiceTotal);
+document.getElementById('invCloseBtn').addEventListener('click', closeInvoice);
+
+function buildInvoiceNumber(carId) {
+  const d = new Date();
+  const stamp = `${d.getFullYear()}${String(d.getMonth()+1).padStart(2,'0')}${String(d.getDate()).padStart(2,'0')}`;
+  return `ALM-${stamp}-${carId}-${Math.floor(Math.random()*900+100)}`;
+}
+
+document.getElementById('invGenerateBtn').addEventListener('click', () => {
+  const c = window._carsCache.find(x => x.id === _invoiceCarId);
+  if (!c) return;
+
+  const customerName = document.getElementById('invCustomerName').value.trim() || '—';
+  const customerPhone = document.getElementById('invCustomerPhone').value.trim() || '—';
+  const location = document.getElementById('invLocation').value.trim() || '—';
+  const lat = document.getElementById('invLat').value;
+  const lng = document.getElementById('invLng').value;
+  const mapLink = (lat && lng) ? `https://maps.google.com/?q=${lat},${lng}` : '';
+  const start = document.getElementById('invStart').value || '—';
+  const hours = document.getElementById('invHours').value || '0';
+  const notes = document.getElementById('invNotes').value.trim();
+  const total = calcInvoiceTotal();
+  const invNo = buildInvoiceNumber(c.id);
+  const today = new Date().toLocaleDateString();
+
+  const w = window.open('', '_blank');
+  w.document.write(`
+    <html><head><title>Invoice ${invNo}</title>
+    <style>
+      body{font-family:system-ui,sans-serif;padding:40px;color:#111;}
+      h1{color:#B8962E;margin-bottom:0;}
+      .sub{color:#888;margin-top:4px;margin-bottom:24px;}
+      table{width:100%;border-collapse:collapse;margin:20px 0;}
+      td,th{padding:8px;border-bottom:1px solid #eee;text-align:left;font-size:.9rem;}
+      .total{font-size:1.2rem;font-weight:700;color:#B8962E;}
+    </style></head><body>
+      <h1>AL-Matar Rentals</h1>
+      <p class="sub">Invoice #${invNo} — ${today}</p>
+      <table>
+        <tr><th>Customer Name</th><td>${customerName}</td></tr>
+        <tr><th>Customer Phone</th><td>${customerPhone}</td></tr>
+        <tr><th>Pickup Location</th><td>${location}${mapLink ? ` — <a href="${mapLink}" target="_blank">View on map</a>` : ''}</td></tr>
+        <tr><th>Rental Start</th><td>${start}</td></tr>
+        <tr><th>Duration</th><td>${hours} hour(s)</td></tr>
+        <tr><th>Car</th><td>${c.name} (${c.type || ''})</td></tr>
+        <tr><th>Fuel / Seats / AC</th><td>${c.fuel || ''} / ${c.seats || ''} / ${c.ac || ''}</td></tr>
+        <tr><th>Features</th><td>${(c.feats||[]).join(', ')}</td></tr>
+        <tr><th>Rate</th><td>PKR ${Number(c.hourly_rate).toLocaleString()}/hr</td></tr>
+        ${notes ? `<tr><th>Notes</th><td>${notes}</td></tr>` : ''}
+      </table>
+      <p class="total">Total: PKR ${total.toLocaleString()}</p>
+      <script>window.print();</script>
+    </body></html>
+  `);
+  w.document.close();
+});
+
+document.getElementById('invWhatsAppBtn').addEventListener('click', () => {
+  const c = window._carsCache.find(x => x.id === _invoiceCarId);
+  if (!c) return;
+
+  const ownerPhone = document.getElementById('invOwnerPhone').value.trim().replace(/[^0-9]/g, '');
+  if (!ownerPhone) { alert('Owner ka WhatsApp number likhein'); return; }
+
+  const customerName = document.getElementById('invCustomerName').value.trim() || 'a customer';
+  const customerPhone = document.getElementById('invCustomerPhone').value.trim() || '—';
+  const location = document.getElementById('invLocation').value.trim() || '—';
+  const lat = document.getElementById('invLat').value;
+  const lng = document.getElementById('invLng').value;
+  const mapLink = (lat && lng) ? `https://maps.google.com/?q=${lat},${lng}` : '';
+  const start = document.getElementById('invStart').value || '—';
+  const hours = document.getElementById('invHours').value || '0';
+  const total = calcInvoiceTotal();
+
+  const msg = `AL-Matar Rentals booking:\nCar: ${c.name}\nCustomer: ${customerName} (${customerPhone})\nLocation: ${location}${mapLink ? `\nMap: ${mapLink}` : ''}\nStart: ${start}\nDuration: ${hours} hrs\nTotal: PKR ${total.toLocaleString()}\nPlease confirm availability.`;
+
+  const url = `https://wa.me/${ownerPhone}?text=${encodeURIComponent(msg)}`;
+  window.open(url, '_blank');
+});
+
+window.openInvoice = openInvoice;
